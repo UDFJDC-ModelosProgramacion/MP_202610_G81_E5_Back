@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 @Entity
-public class MedicalRecord extends BaseEntity {
+public class MedicalRecordEntity extends BaseEntity {
 
     private String vaccinations;
     private LocalDate upcomingDates;

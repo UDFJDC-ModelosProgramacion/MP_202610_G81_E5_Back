@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 @Entity
-public class TypeLE extends BaseEntity {
+public class TypeLEEntity extends BaseEntity {
 
     private String name;
 }
