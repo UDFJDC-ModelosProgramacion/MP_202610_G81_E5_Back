@@ -2,7 +2,8 @@ package co.edu.udistrital.mdp.pets.entities;
 import jakarta.persistence.*;
 import uk.co.jemos.podam.common.PodamExclude;
 import lombok.Data;
-import java.util.arrays;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class AdopterEntity extends BaseEntity {

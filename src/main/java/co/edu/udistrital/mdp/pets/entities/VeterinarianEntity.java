@@ -2,6 +2,8 @@ package co.edu.udistrital.mdp.pets.entities;
 import jakarta.persistence.*;
 import uk.co.jemos.podam.common.PodamExclude;
 import lombok.Data;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Entity
