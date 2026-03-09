@@ -24,11 +24,10 @@ public class AdoptionProcessEntity extends BaseEntity {
     @OneToOne
     private AdoptionRequestEntity request;
 
-    @manyToOne
+    @ManyToOne
     @JoinColumn(name = "veterinarian_id")
     private VeterinarianEntity veterinarian;
 
-    private AdoptionRequestEntity request;
     private LocalDate requestDate;
     private String status;
 
