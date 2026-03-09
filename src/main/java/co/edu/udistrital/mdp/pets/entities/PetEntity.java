@@ -5,6 +5,8 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import lombok.Data;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.annotations.ManyToAny;
@@ -24,13 +26,13 @@ public class PetEntity extends BaseEntity {
     private Boolean compOtherDogs;
     
     @OneToMany(mappedBy = "pet")
-    private List<MedicalRecordEntity> medicalRecords;
+    private List<MedicalRecordEntity> medicalRecords=new ArrayList<>();
 
     @OneToMany(mappedBy = "pet")
-    private List<LifeEventEntity> lifeEvents;
+    private List<LifeEventEntity> lifeEvents=new ArrayList<>();
     
     @OneToMany
-    private List<AdoptionProcessEntity> adoptionProcess;
+    private List<AdoptionProcessEntity> adoptionProcess=new ArrayList<>();
 
     @ManyToOne
     @JoinColumn(name = "shelter_id")

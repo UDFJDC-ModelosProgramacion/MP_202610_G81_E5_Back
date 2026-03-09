@@ -19,4 +19,8 @@ public class LifeEventEntity extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "type_id")
     private TypeLEEntity type;
+
+    @ManyToOne
+    @JoinColumn(name = "veterinarian_id")
+    private VeterinarianEntity veterinarian;
 }
