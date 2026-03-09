@@ -4,7 +4,7 @@ import uk.co.jemos.podam.common.PodamExclude;
 import lombok.Data;
 
 
-public class AdopterEntity {
+public class AdopterEntity extends BaseEntity {
     private String housingType;
     private Boolean hasOtherPets;
     
