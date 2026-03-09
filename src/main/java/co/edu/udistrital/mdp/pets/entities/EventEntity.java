@@ -13,7 +13,7 @@ public class EventEntity extends BaseEntity {
     private String type;
 
     @ManyToOne
-    @JoinColumn(name = "vet_id")
+    @JoinColumn(name = "shelter_id")
     @PodamExclude
-    private VetEntity vet;
+    private ShelterEntity shelter;
 }
