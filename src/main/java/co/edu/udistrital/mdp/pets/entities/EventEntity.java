@@ -11,4 +11,9 @@ public class EventEntity extends BaseEntity {
     private String name;
     private Date date;
     private String type;
+
+    @ManyToOne
+    @JoinColumn(name = "vet_id")
+    @PodamExclude
+    private VetEntity vet;
 }
