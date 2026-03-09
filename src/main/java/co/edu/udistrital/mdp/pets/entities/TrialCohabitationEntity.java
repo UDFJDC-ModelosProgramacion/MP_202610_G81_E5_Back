@@ -12,8 +12,13 @@ import uk.co.jemos.podam.common.PodamExclude;
 public class TrialCohabitationEntity extends BaseEntity {
     
     @PodamExclude
+    
     @OneToOne
     private VeterinarianEntity veterinarian;
+
+    @OneToOne
+    private AdoptionProcessEntity adoptionProcess;
+
     private LocalDate trialStarDate;
     private LocalDate trialEndDate;
     private String status;
