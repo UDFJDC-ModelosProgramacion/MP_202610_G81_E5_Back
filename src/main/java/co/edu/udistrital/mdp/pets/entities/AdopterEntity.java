@@ -9,14 +9,11 @@ public class AdopterEntity extends BaseEntity {
     private Boolean hasOtherPets;
     
     @OneToMany
-    @PodamExclude
-    private adoptionProcessEntity adoptionProcess;
+    private List<AdoptionProcess> adoptionProcess;
 
     @OneToMany
-    @PodamExclude
-    private adoptionRequestEntity adoptionRequest;
+    private List<AdoptionRequest> adoptionRequest;
 
     @OneToMany
-    @PodamExclude
-    private PetEntity pet;
+    private List<Pet> pet;
 }
