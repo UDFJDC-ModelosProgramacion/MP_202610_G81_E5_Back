@@ -5,11 +5,13 @@ import lombok.Data;
 import java.util.ArrayList;
 import java.util.List;
 
+@Data
+@Entity
 
 public class AdopterEntity extends BaseEntity {
     private String housingType;
     private Boolean hasOtherPets;
-    
+    @PodamExlude
     @OneToMany
     private List<AdoptionProcessEntity> adoptionProcess=new ArrayList <>();
 
