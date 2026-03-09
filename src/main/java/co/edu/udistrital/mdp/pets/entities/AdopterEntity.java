@@ -8,18 +8,15 @@ public class AdopterEntity extends BaseEntity {
     private String housingType;
     private Boolean hasOtherPets;
     
-    @ManyToOne
-    @JoinColumn(name = "adoptionProcess_id")
+    @OneToMany
     @PodamExclude
     private adoptionProcessEntity adoptionProcess;
 
-    @ManyToOne
-    @JoinColumn(name = "adoptionRequest_id")
+    @OneToMany
     @PodamExclude
     private adoptionRequestEntity adoptionRequest;
 
-    @ManyToOne
-    @JoinColumn(name = "pet_id")
+    @OneToMany
     @PodamExclude
     private PetEntity pet;
 }
