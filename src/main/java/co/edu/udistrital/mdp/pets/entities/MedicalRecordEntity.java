@@ -16,4 +16,7 @@ public class MedicalRecordEntity extends BaseEntity {
     @JoinColumn(name = "pet_id")
     private PetEntity pet;
 
+    @ManyToOne
+    @JoinColumn(name = "veterinarian_id")
+    private VeterinarianEntity veterinarian;
 }
