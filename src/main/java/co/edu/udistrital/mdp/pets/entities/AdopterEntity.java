@@ -2,6 +2,7 @@ package co.edu.udistrital.mdp.pets.entities;
 import jakarta.persistence.*;
 import uk.co.jemos.podam.common.PodamExclude;
 import lombok.Data;
+import java.util.arrays;
 
 
 public class AdopterEntity extends BaseEntity {
@@ -9,11 +10,10 @@ public class AdopterEntity extends BaseEntity {
     private Boolean hasOtherPets;
     
     @OneToMany
-    private List<AdoptionProcess> adoptionProcess;
+    private List<AdoptionProcessEntity> adoptionProcess=new ArrayList <>();
 
     @OneToMany
-    private List<AdoptionRequest> adoptionRequest;
-
+    private List<AdoptionRequestEntity> adoptionRequest=new ArrayList <>();
     @OneToMany
-    private List<Pet> pet;
+    private List<PetEntity> pet= new ArrayList <>();
 }
