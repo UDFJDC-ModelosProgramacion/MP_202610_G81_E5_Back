@@ -13,14 +13,15 @@ public class ShelterEntity extends BaseEntity {
 
     @ElementCollection
     @OneToMany(mappedBy = "shelter", cascade = CascadeType.ALL, orphanRemoval = true) 
-    @JoinColumn(name = "event_id")
     @PodamExclude
     private EventEntity event;
 
-
-    @ManyToOne
-    @JoinColumn(name = "vet_id")
+    @OneToMany(mappedBy = "shelter", cascade = CascadeType.ALL, orphanRemoval = true)
     @PodamExclude
-    private VetEntity vet;
+    private VeterinarianEntity veterinarian;
+
+    @OneToMany(mappedBy = "shelter", cascade = CascadeType.ALL, orphanRemoval = true)
+    @PodamExclude
+    private PetEntity pet;
 }
  
