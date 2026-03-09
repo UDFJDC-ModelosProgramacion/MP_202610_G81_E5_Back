@@ -11,7 +11,7 @@ import java.util.List;
 public class AdopterEntity extends BaseEntity {
     private String housingType;
     private Boolean hasOtherPets;
-    @PodamExlude
+    @PodamExclude
     @OneToMany
     private List<AdoptionProcessEntity> adoptionProcess=new ArrayList <>();
 
