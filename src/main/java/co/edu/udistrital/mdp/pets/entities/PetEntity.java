@@ -28,6 +28,9 @@ public class PetEntity extends BaseEntity {
 
     @OneToMany(mappedBy = "pet")
     private List<LifeEventEntity> lifeEvents;
+    
+    @OneToMany
+    private List<AdoptionProcessEntity> adoptionProcess;
 
     @ManyToOne
     @JoinColumn(name = "shelter_id")
@@ -37,7 +40,4 @@ public class PetEntity extends BaseEntity {
     @JoinColumn(name = "adopter_id")
     private AdopterEntity adopter;
 
-    @ManyToOne
-    @JoinColumn(name = "process_id")
-    private AdoptionProcessEntity adoptionProcess;
 }
