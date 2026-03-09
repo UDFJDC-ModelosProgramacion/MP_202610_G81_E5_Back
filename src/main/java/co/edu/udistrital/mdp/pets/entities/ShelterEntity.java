@@ -2,6 +2,8 @@ package co.edu.udistrital.mdp.pets.entities;
 import jakarta.persistence.*;
 import uk.co.jemos.podam.common.PodamExclude;
 import lombok.Data;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Entity
@@ -14,14 +16,14 @@ public class ShelterEntity extends BaseEntity {
     @ElementCollection
     @OneToMany(mappedBy = "shelter", cascade = CascadeType.ALL, orphanRemoval = true) 
     @PodamExclude
-    private EventEntity event;
+    private List<EventEntity> event=new ArrayList <>();
 
     @OneToMany(mappedBy = "shelter", cascade = CascadeType.ALL, orphanRemoval = true)
     @PodamExclude
-    private VeterinarianEntity veterinarian;
+    private List<VeterinarianEntity> veterinarian=new ArrayList <>();
 
     @OneToMany(mappedBy = "shelter", cascade = CascadeType.ALL, orphanRemoval = true)
     @PodamExclude
-    private PetEntity pet;
+    private List<PetEntity> pet=new ArrayList <>();
 }
  
