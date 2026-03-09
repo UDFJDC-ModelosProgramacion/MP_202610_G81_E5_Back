@@ -12,7 +12,9 @@ import uk.co.jemos.podam.common.PodamExclude;
 public class AdoptionProcessEntity extends BaseEntity {
     
     @PodamExclude
-    @OneToOne(mappedBy="Adopter")
+    @ManyToOne
+    @JoinColumn(name = "adopter_id")
+    private AdopterEntity adopter;
     private AdoptionRequestEntity request;
     private LocalDate requestDate;
     private String status;
