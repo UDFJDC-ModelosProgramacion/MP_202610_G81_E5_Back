@@ -1,6 +1,7 @@
 package co.edu.udistrital.mdp.pets.services;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,6 @@ import co.edu.udistrital.mdp.pets.entities.TrialCohabitationEntity;
 import co.edu.udistrital.mdp.pets.exceptions.EntityNotFoundException;
 import co.edu.udistrital.mdp.pets.exceptions.IllegalOperationException;
 import co.edu.udistrital.mdp.pets.repositories.AdopterRepository;
-import co.edu.udistrital.mdp.pets.repositories.AdoptionProcessRepository;
 import co.edu.udistrital.mdp.pets.repositories.AdoptionRequestRepository;
 import co.edu.udistrital.mdp.pets.repositories.PetRepository;
 import co.edu.udistrital.mdp.pets.repositories.TrialCohabitationRepository;
@@ -27,9 +27,6 @@ public class AdoptionRequestService {
 
     @Autowired
     AdoptionRequestRepository adoptionRequestRepository;
-
-    @Autowired
-    AdoptionProcessRepository adoptionProcessRepository;
 
     @Autowired
     TrialCohabitationRepository trialCohabitationRepository;
@@ -64,7 +61,7 @@ public class AdoptionRequestService {
         if(adoptionRequestEntity.getAdopter() == null)
             throw new IllegalOperationException("La solicitud de adopción debe estar asociada a un adoptante");
 
-        if(!adopterRepository.existsById(adoptionRequestEntity.getAdopter().getId()))
+        if(!adopterRepository.existsById(Objects.requireNonNull(adoptionRequestEntity.getAdopter().getId(), "El ID del adoptante no puede ser nulo")))
             throw new EntityNotFoundException("El adoptante con id = " + adoptionRequestEntity.getAdopter().getId() + " no existe");
 
         if(adoptionRequestEntity.getIdPet() == null || adoptionRequestEntity.getIdPet().trim().isEmpty())
@@ -77,7 +74,7 @@ public class AdoptionRequestService {
             throw new IllegalOperationException("El id de mascota debe ser un número válido");
         }
 
-        if(!petRepository.existsById(petId))
+        if(!petRepository.existsById(Objects.requireNonNull(petId, "El ID de la mascota no puede ser nulo")))
             throw new EntityNotFoundException("La mascota con id = " + petId + " no existe");
 
         if(!adoptionRequestRepository.findByAdopterId(adoptionRequestEntity.getAdopter().getId()).isEmpty())
@@ -106,7 +103,8 @@ public class AdoptionRequestService {
 
         log.info("Inicia búsqueda de solicitud de adopción con id = {}", adoptionRequestId);
 
-        Optional<AdoptionRequestEntity> adoptionRequest = adoptionRequestRepository.findById(adoptionRequestId);
+        Optional<AdoptionRequestEntity> adoptionRequest = adoptionRequestRepository.findById(
+            Objects.requireNonNull(adoptionRequestId, "El ID de la solicitud no puede ser nulo"));
 
         if(!adoptionRequest.isPresent())
             throw new EntityNotFoundException("La solicitud de adopción con id = " + adoptionRequestId + " no existe");
@@ -153,7 +151,8 @@ public class AdoptionRequestService {
 
         log.info("Inicia proceso de actualización de solicitud de adopción con id = {}", adoptionRequestId);
 
-        Optional<AdoptionRequestEntity> existingAdoptionRequest = adoptionRequestRepository.findById(adoptionRequestId);
+        Optional<AdoptionRequestEntity> existingAdoptionRequest = adoptionRequestRepository.findById(
+            Objects.requireNonNull(adoptionRequestId, "El ID de la solicitud no puede ser nulo"));
 
         if(!existingAdoptionRequest.isPresent())
             throw new EntityNotFoundException("La solicitud de adopción con id = " + adoptionRequestId + " no existe");
@@ -163,7 +162,7 @@ public class AdoptionRequestService {
         if(adoptionRequestEntity.getAdopter() == null)
             throw new IllegalOperationException("La solicitud de adopción debe estar asociada a un adoptante");
 
-        if(!adopterRepository.existsById(adoptionRequestEntity.getAdopter().getId()))
+        if(!adopterRepository.existsById(Objects.requireNonNull(adoptionRequestEntity.getAdopter().getId(), "El ID del adoptante no puede ser nulo")))
             throw new EntityNotFoundException("El adoptante con id = " + adoptionRequestEntity.getAdopter().getId() + " no existe");
 
         if(adoptionRequestEntity.getIdPet() == null || adoptionRequestEntity.getIdPet().trim().isEmpty())
@@ -176,7 +175,7 @@ public class AdoptionRequestService {
             throw new IllegalOperationException("El id de mascota debe ser un número válido");
         }
 
-        if(!petRepository.existsById(petId))
+        if(!petRepository.existsById(Objects.requireNonNull(petId, "El ID de la mascota no puede ser nulo")))
             throw new EntityNotFoundException("La mascota con id = " + petId + " no existe");
 
         if(adoptionRequestEntity.getAdoptionProcess() == null)
@@ -208,13 +207,15 @@ public class AdoptionRequestService {
      * @throws EntityNotFoundException si la solicitud de adopción no existe
      * @throws IllegalOperationException si la solicitud no tiene proceso asociado o existe prueba de cohabitación vinculada
      */
+
     @Transactional
     public void deleteAdoptionRequest(Long adoptionRequestId) 
     throws EntityNotFoundException, IllegalOperationException{
 
         log.info("Inicia proceso de eliminación de solicitud de adopción con id = {}", adoptionRequestId);
 
-        Optional<AdoptionRequestEntity> adoptionRequest = adoptionRequestRepository.findById(adoptionRequestId);
+        Optional<AdoptionRequestEntity> adoptionRequest = adoptionRequestRepository.findById(
+            Objects.requireNonNull(adoptionRequestId, "El ID de la solicitud no puede ser nulo"));
 
         if(!adoptionRequest.isPresent())
             throw new EntityNotFoundException("La solicitud de adopción con id = " + adoptionRequestId + " no existe");
