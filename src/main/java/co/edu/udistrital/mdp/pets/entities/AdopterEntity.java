@@ -11,12 +11,16 @@ import java.util.List;
 public class AdopterEntity extends BaseEntity {
     private String housingType;
     private Boolean hasOtherPets;
+
     @PodamExclude
     @OneToMany
     private List<AdoptionProcessEntity> adoptionProcess=new ArrayList <>();
 
+    @PodamExclude
     @OneToMany
     private List<AdoptionRequestEntity> adoptionRequest=new ArrayList <>();
+    
+    @PodamExclude
     @OneToMany
     private List<PetEntity> pet= new ArrayList <>();
 }

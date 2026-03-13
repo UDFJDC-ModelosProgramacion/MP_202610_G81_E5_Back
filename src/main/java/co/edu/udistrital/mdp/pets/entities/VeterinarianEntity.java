@@ -23,12 +23,15 @@ public class VeterinarianEntity extends BaseEntity {
     @PodamExclude
     private TrialCohabitationEntity trialCohabitation;
 
+    @PodamExclude
     @OneToMany(mappedBy = "veterinarian")
     private List<MedicalRecordEntity> medicalRecords=new ArrayList <>();
 
+    @PodamExclude
     @OneToMany(mappedBy = "veterinarian")
     private List<LifeEventEntity> lifeEvents=new ArrayList <>();
 
+    @PodamExclude
     @OneToMany(mappedBy = "veterinarian")
     private List<AdoptionProcessEntity> adoptionProcesses=new ArrayList <>();
 }
