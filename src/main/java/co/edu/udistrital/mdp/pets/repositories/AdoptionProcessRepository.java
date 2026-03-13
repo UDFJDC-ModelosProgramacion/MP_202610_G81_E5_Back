@@ -4,5 +4,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import co.edu.udistrital.mdp.pets.entities.AdoptionProcessEntity;
 
 public interface AdoptionProcessRepository extends JpaRepository<AdoptionProcessEntity, Long> {
-
+    boolean existsByPetIdAndStatus(Long petId, String status);
 }

@@ -1,6 +1,7 @@
 package co.edu.udistrital.mdp.pets.entities;
 
 import java.util.List;
+import java.util.ArrayList;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
@@ -13,5 +14,5 @@ public class TypeLEEntity extends BaseEntity {
     private String name;
 
     @OneToMany(mappedBy = "type")
-    private List<LifeEventEntity> lifeEvents;
+    private List<LifeEventEntity> lifeEvents = new ArrayList<>();
 }

@@ -29,7 +29,7 @@ public class PetEntity extends BaseEntity {
     @OneToMany(mappedBy = "pet")
     private List<LifeEventEntity> lifeEvents=new ArrayList<>();
     
-    @OneToMany
+    @OneToMany(mappedBy = "pet")
     private List<AdoptionProcessEntity> adoptionProcess=new ArrayList<>();
 
     @ManyToOne
