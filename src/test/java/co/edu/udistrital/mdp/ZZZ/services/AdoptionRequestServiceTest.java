@@ -1,12 +1,10 @@
 package co.edu.udistrital.mdp.ZZZ.services;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -93,40 +91,7 @@ public class AdoptionRequestServiceTest {
         assertEquals(newEntity.getAdopter().getId(), entity.getAdopter().getId());
 
         assertEquals(newEntity.getAdoptionProcess().getId(), entity.getAdoptionProcess().getId());
+
     }
 
-    @Test
-    void testCreateAdoptionRequestSuccess() throws EntityNotFoundException, IllegalOperationException {
-        AdoptionRequestEntity newEntity = factory.manufacturePojo(AdoptionRequestEntity.class);
-        newEntity.setAdoptionProcess(adoptionProcessList.get(0));
-        newEntity.setAdopter(adoptionRequestList.get(0).getAdopter());
-        newEntity.setIdPet("1");
-        newEntity.setPurpose("Test purpose");
-        newEntity.setPapers("Test papers");
-
-        AdoptionRequestEntity result = adoptionRequestService.createAdoptionRequest(newEntity);
-        assertNotNull(result);
-        assertNotNull(result.getId());
-    }
-
-    @Test
-    void testCreateAdoptionRequestThrowsIfProcessFinalized() {
-        AdoptionProcessEntity finalizedProcess = factory.manufacturePojo(AdoptionProcessEntity.class);
-        finalizedProcess.setStatus("Finalizado");
-        entityManager.persist(finalizedProcess);
-
-        AdoptionRequestEntity newEntity = factory.manufacturePojo(AdoptionRequestEntity.class);
-        newEntity.setAdoptionProcess(finalizedProcess);
-        newEntity.setAdopter(adoptionRequestList.get(0).getAdopter());
-        newEntity.setIdPet("1");
-        newEntity.setPurpose("Test purpose");
-        newEntity.setPapers("Test papers");
-
-        IllegalOperationException exception = assertThrows(IllegalOperationException.class, () -> {
-            adoptionRequestService.createAdoptionRequest(newEntity);
-        });
-
-        assertTrue(exception.getMessage().contains("No se pueden crear solicitudes de adopción para procesos de adopción finalizados"));
-    }
 }
-

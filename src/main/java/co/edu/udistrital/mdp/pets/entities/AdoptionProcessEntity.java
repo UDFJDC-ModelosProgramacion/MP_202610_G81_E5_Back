@@ -4,8 +4,8 @@ import java.time.LocalDate;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.ManyToOne;
 import lombok.Data;
 import uk.co.jemos.podam.common.PodamExclude;
 
