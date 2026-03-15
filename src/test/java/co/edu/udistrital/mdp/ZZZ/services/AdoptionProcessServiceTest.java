@@ -1,34 +1,32 @@
 package co.edu.udistrital.mdp.ZZZ.services;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Optional;
-
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.context.annotation.Import;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
+import co.edu.udistrital.mdp.pets.MainApplication;
+import co.edu.udistrital.mdp.pets.entities.AdopterEntity;
 import co.edu.udistrital.mdp.pets.entities.AdoptionProcessEntity;
 import co.edu.udistrital.mdp.pets.entities.AdoptionRequestEntity;
-import co.edu.udistrital.mdp.pets.entities.AdopterEntity;
 import co.edu.udistrital.mdp.pets.entities.PetEntity;
 import co.edu.udistrital.mdp.pets.entities.VeterinarianEntity;
-import co.edu.udistrital.mdp.pets.exceptions.EntityNotFoundException;
 import co.edu.udistrital.mdp.pets.exceptions.IllegalOperationException;
 import co.edu.udistrital.mdp.pets.services.AdoptionProcessService;
-import co.edu.udistrital.mdp.pets.services.AdoptionRequestService;
-import org.springframework.beans.BeanUtils;
 import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
 
 @DataJpaTest
 @Transactional
+@ContextConfiguration(classes = MainApplication.class)
 @Import(AdoptionProcessService.class)
 public class AdoptionProcessServiceTest {
 
@@ -78,7 +76,7 @@ public class AdoptionProcessServiceTest {
         existing.setPet(pet);
         existing.setRequest(approvedRequest);
         existing.setVeterinarian(veterinarian);
-        existing.setStatus("cerrado");
+        existing.setStatus("aprobado");
         entityManager.persist(existing);
 
         AdoptionProcessEntity newProcess = factory.manufacturePojo(AdoptionProcessEntity.class);

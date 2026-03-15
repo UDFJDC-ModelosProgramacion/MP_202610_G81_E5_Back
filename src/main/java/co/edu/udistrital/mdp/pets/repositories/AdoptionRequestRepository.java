@@ -11,4 +11,5 @@ import co.edu.udistrital.mdp.pets.entities.AdoptionRequestEntity;
 public interface AdoptionRequestRepository extends JpaRepository<AdoptionRequestEntity, Long> {
 
     List<AdopterEntity> findByAdopterId(Long adopterid);
+    boolean existsByAdoptionProcessId(Long adoptionProcessId);
 }

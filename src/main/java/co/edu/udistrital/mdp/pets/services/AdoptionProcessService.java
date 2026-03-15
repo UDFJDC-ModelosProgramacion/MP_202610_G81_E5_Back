@@ -48,16 +48,10 @@ public class AdoptionProcessService {
             throw new IllegalOperationException("La request del proceso no puede ser nula");
         }
 
-        // Se asume que request ya valida sus valores; solo necesitamos verificar que esté aprobada.
-        if (adoptionProcess.getRequest().getAdoptionProcess() == null
-                || adoptionProcess.getRequest().getAdoptionProcess().getStatus() == null
-                || !"aprobado".equalsIgnoreCase(adoptionProcess.getRequest().getAdoptionProcess().getStatus().trim())) {
-            throw new IllegalOperationException("La request debe estar aprobada");
-        }
         if (adoptionProcess.getVeterinarian() == null) {
             throw new IllegalOperationException("El veterinario asignado no puede ser nulo");
         }
-        if (adoptionProcessRepository.existsByVeterinarian(adoptionProcess.getVeterinarian())) {
+        if (adoptionProcessRepository.findByVeterinarianId(adoptionProcess.getVeterinarian().getId()).isPresent()) {
             throw new IllegalOperationException("El veterinario asignado ya tiene otro proceso de adopción");
         }
         if (adoptionProcess.getStatus() == null || adoptionProcess.getStatus().trim().isEmpty()) {
@@ -146,4 +140,3 @@ public class AdoptionProcessService {
         adoptionProcessRepository.deleteById(id);
     }
 }
-

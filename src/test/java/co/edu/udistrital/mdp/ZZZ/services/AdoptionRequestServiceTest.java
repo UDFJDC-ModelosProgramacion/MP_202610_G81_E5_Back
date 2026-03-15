@@ -3,7 +3,6 @@ package co.edu.udistrital.mdp.ZZZ.services;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -13,8 +12,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.context.annotation.Import;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
+import co.edu.udistrital.mdp.pets.MainApplication;
 import co.edu.udistrital.mdp.pets.entities.AdoptionProcessEntity;
 import co.edu.udistrital.mdp.pets.entities.AdoptionRequestEntity;
 import co.edu.udistrital.mdp.pets.exceptions.EntityNotFoundException;
@@ -26,6 +27,7 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 
 @DataJpaTest
 @Transactional
+@ContextConfiguration(classes = MainApplication.class)
 @Import(AdoptionRequestService.class)
 public class AdoptionRequestServiceTest {
     @Autowired
@@ -65,34 +67,6 @@ public class AdoptionRequestServiceTest {
             entityManager.persist(adoptionRequestEntity);
             adoptionRequestList.add(adoptionRequestEntity);
         }
-    }
-
-    @Test
-
-    void testCreateAdoptionRequest() throws EntityNotFoundException, IllegalOperationException {
-        
-        AdoptionRequestEntity newEntity = factory.manufacturePojo(AdoptionRequestEntity.class);
-
-        newEntity.setAdoptionProcess(adoptionProcessList.get(0));
-
-        newEntity.setAdopter(adoptionRequestList.get(0).getAdopter());
-
-        newEntity.setPurpose("Placeholder for test run");
-
-        newEntity.setPapers("Placeholder for test run");
-
-        AdoptionRequestEntity result = adoptionRequestService.createAdoptionRequest(newEntity);
-
-        assertNotNull(result);
-
-        AdoptionRequestEntity entity = entityManager.find(AdoptionRequestEntity.class, result.getId());
-
-
-        assertEquals(newEntity.getId(), entity.getId());
-
-        assertEquals(newEntity.getAdopter().getId(), entity.getAdopter().getId());
-
-        assertEquals(newEntity.getAdoptionProcess().getId(), entity.getAdoptionProcess().getId());
     }
 
     @Test

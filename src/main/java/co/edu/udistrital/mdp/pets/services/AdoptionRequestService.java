@@ -67,6 +67,9 @@ public class AdoptionRequestService {
         if(adoptionRequestEntity.getIdPet() == null || adoptionRequestEntity.getIdPet().trim().isEmpty())
             throw new IllegalOperationException("La solicitud de adopción debe incluir una mascota válida");
 
+        if(adoptionRequestEntity.getAdoptionProcess() == null)
+            throw new IllegalOperationException("La solicitud de adopción debe estar asociada a un proceso de adopción");
+
         Long petId;
         try {
             petId = Long.parseLong(adoptionRequestEntity.getIdPet());
