@@ -92,11 +92,8 @@ public class PetService {
             throw new IllegalOperationException("Pet age must be >= 0");
         }
         
-        if (pet.getShelter() == null && pet.getAdopter() == null) {
-            throw new IllegalOperationException("La mascota debe pertenecer a un refugio o a un adoptante");
-        }
-        if (pet.getShelter() != null && pet.getAdopter() != null) {
-            throw new IllegalOperationException("La mascota no puede pertenecer a un refugio y a un adoptante al mismo tiempo");
+        if (!(pet.getShelter() == null ^ pet.getAdopter() == null)) {
+            throw new IllegalOperationException("Pet must belong to either a shelter or an adopter");
         }
         if (pet.getShelter() != null) {
             shelterRepository.findById(pet.getShelter().getId()).orElseThrow(
@@ -105,6 +102,7 @@ public class PetService {
         if (pet.getAdopter() != null) {
             adopterRepository.findById(pet.getAdopter().getId()).orElseThrow(
                 () -> new EntityNotFoundException("Pet adopter not found"));
+
         }
         pet.setId(petId);
 
