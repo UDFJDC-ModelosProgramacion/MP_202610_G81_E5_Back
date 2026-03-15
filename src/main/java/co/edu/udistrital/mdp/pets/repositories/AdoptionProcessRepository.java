@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface AdoptionProcessRepository extends JpaRepository<AdoptionProcessEntity, Long> {
-
+    boolean existsByPetIdAndStatus(Long petId, String status);
 }

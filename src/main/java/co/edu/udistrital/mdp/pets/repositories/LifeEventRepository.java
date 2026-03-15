@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface LifeEventRepository extends JpaRepository<LifeEventEntity, Long> {
+    boolean existsByTypeId(Long typeId);
 }
