@@ -33,8 +33,12 @@ public class PetEntity extends BaseEntity {
     private List<LifeEventEntity> lifeEvents=new ArrayList<>();
     
     @PodamExclude
-    @OneToMany
+    @OneToMany(mappedBy = "pet")
     private List<AdoptionProcessEntity> adoptionProcess=new ArrayList<>();
+
+    @PodamExclude
+    @OneToMany(mappedBy = "pet")
+    private List<AdoptionRequestEntity> adoptionRequest=new ArrayList<>();
 
     @PodamExclude
     @ManyToOne

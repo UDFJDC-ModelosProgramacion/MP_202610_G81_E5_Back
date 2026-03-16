@@ -17,11 +17,16 @@ public class AdoptionRequestEntity extends BaseEntity {
     private AdopterEntity adopter;
 
     @PodamExclude
-    @OneToOne
+    @OneToOne(mappedBy = "request")
     private AdoptionProcessEntity adoptionProcess;
 
-    private String idPet;
+    @PodamExclude
+    @ManyToOne
+    @JoinColumn(name = "pet_id")
+    private PetEntity pet;
+
     private String purpose;
     private String papers;
+    private String status; // aprobado, cerrado
 
 }
