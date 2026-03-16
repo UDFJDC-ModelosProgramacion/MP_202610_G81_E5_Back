@@ -16,10 +16,10 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.ContextConfiguration;
 
-import co.edu.udistrital.mdp.pets.entities.AdoptionProcessEntity;
-import co.edu.udistrital.mdp.pets.entities.AdoptionRequestEntity;
 import co.edu.udistrital.mdp.pets.MainApplication;
 import co.edu.udistrital.mdp.pets.entities.AdopterEntity;
+import co.edu.udistrital.mdp.pets.entities.AdoptionProcessEntity;
+import co.edu.udistrital.mdp.pets.entities.AdoptionRequestEntity;
 import co.edu.udistrital.mdp.pets.entities.PetEntity;
 import co.edu.udistrital.mdp.pets.entities.VeterinarianEntity;
 import co.edu.udistrital.mdp.pets.exceptions.EntityNotFoundException;
