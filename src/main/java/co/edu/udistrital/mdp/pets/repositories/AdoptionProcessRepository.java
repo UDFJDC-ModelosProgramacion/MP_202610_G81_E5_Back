@@ -1,10 +1,15 @@
 package co.edu.udistrital.mdp.pets.repositories;
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import co.edu.udistrital.mdp.pets.entities.AdoptionProcessEntity;
-import org.springframework.stereotype.Repository;
+import co.edu.udistrital.mdp.pets.entities.VeterinarianEntity;
 
 @Repository
 public interface AdoptionProcessRepository extends JpaRepository<AdoptionProcessEntity, Long> {
+    Optional<AdoptionProcessEntity> findByVeterinarianId(Long veterinarianId);
     boolean existsByPetIdAndStatus(Long petId, String status);
+    boolean existsByVeterinarian(VeterinarianEntity veterinarian);
 }

@@ -28,6 +28,7 @@ public class AdoptionProcessEntity extends BaseEntity {
 
     @PodamExclude
     @OneToOne
+    @JoinColumn(name = "request_id")
     private AdoptionRequestEntity request;
 
     @PodamExclude

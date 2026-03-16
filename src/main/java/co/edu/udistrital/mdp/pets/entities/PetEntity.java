@@ -37,6 +37,10 @@ public class PetEntity extends BaseEntity {
     private List<AdoptionProcessEntity> adoptionProcess=new ArrayList<>();
 
     @PodamExclude
+    @OneToMany(mappedBy = "pet")
+    private List<AdoptionRequestEntity> adoptionRequest=new ArrayList<>();
+
+    @PodamExclude
     @ManyToOne
     @JoinColumn(name = "shelter_id")
     private ShelterEntity shelter;
