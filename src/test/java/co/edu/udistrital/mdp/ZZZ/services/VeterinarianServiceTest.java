@@ -21,7 +21,7 @@ import co.edu.udistrital.mdp.pets.entities.VeterinarianEntity;
 import co.edu.udistrital.mdp.pets.entities.MedicalRecordEntity;
 import co.edu.udistrital.mdp.pets.exceptions.EntityNotFoundException;
 import co.edu.udistrital.mdp.pets.exceptions.IllegalOperationException;
-import co.edu.udistrital.mdp.pets.services.VeterinarianService; // 🔥 ESTE FALTABA
+import co.edu.udistrital.mdp.pets.services.VeterinarianService;
 
 import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
@@ -70,9 +70,7 @@ class VeterinarianServiceTest {
     @Test
     void testGetVeterinarian() throws EntityNotFoundException {
         VeterinarianEntity vet = vetList.get(0);
-
         VeterinarianEntity result = veterinarianService.getVeterinarian(vet.getId());
-
         assertNotNull(result);
         assertEquals(vet.getId(), result.getId());
     }
@@ -86,20 +84,15 @@ class VeterinarianServiceTest {
 
     @Test
     void testCreateVeterinarian() throws IllegalOperationException {
-
         VeterinarianEntity newVet = factory.manufacturePojo(VeterinarianEntity.class);
         newVet.setLicenseNumber("UNIQUE123");
-
         VeterinarianEntity result = veterinarianService.createVeterinarian(newVet);
-
         assertNotNull(result);
     }
 
     @Test
     void testCreateVeterinarianWithSameLicense() {
-
         VeterinarianEntity vet = vetList.get(0);
-
         VeterinarianEntity newVet = factory.manufacturePojo(VeterinarianEntity.class);
         newVet.setLicenseNumber(vet.getLicenseNumber());
 
@@ -110,12 +103,10 @@ class VeterinarianServiceTest {
 
     @Test
     void testDeleteVeterinarianWithMedicalRecords() {
-
         VeterinarianEntity vet = vetList.get(0);
 
         MedicalRecordEntity record = factory.manufacturePojo(MedicalRecordEntity.class);
         record.setVeterinarian(vet);
-
         entityManager.persist(record);
 
         assertThrows(IllegalOperationException.class, () -> {
