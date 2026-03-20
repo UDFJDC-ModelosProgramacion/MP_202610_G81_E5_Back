@@ -1,47 +1,67 @@
-@DataJpaTest
-@Transactional
-@ContextConfiguration(classes = MainApplication.class)
-@Import(AdopterService.class)
-class AdopterServiceTest {
+package co.edu.udistrital.mdp.pets.services;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import co.edu.udistrital.mdp.pets.entities.AdopterEntity;
+import co.edu.udistrital.mdp.pets.repositories.AdopterRepository;
+import co.edu.udistrital.mdp.pets.exceptions.EntityNotFoundException;
+import co.edu.udistrital.mdp.pets.exceptions.IllegalOperationException;
+
+import java.util.List;
+import java.util.Optional;
+
+@Service
+public class AdopterService {
 
     @Autowired
-    private AdopterService adopterService;
+    private AdopterRepository adopterRepository;
 
-    @Autowired
-    private TestEntityManager entityManager;
-
-    private PodamFactory factory = new PodamFactoryImpl();
-
-    private AdopterEntity adopter;
-
-    @BeforeEach
-    void setUp() {
-        adopter = factory.manufacturePojo(AdopterEntity.class);
-        entityManager.persist(adopter);
+    public List<AdopterEntity> getAdopters() {
+        return adopterRepository.findAll();
     }
 
-    @Test
-    void testGetAdopter() throws EntityNotFoundException {
-        AdopterEntity result = adopterService.getAdopter(adopter.getId());
-        assertNotNull(result);
+    public AdopterEntity getAdopter(Long id) throws EntityNotFoundException {
+        Optional<AdopterEntity> adop = adopterRepository.findById(id);
+
+        if (adop.isEmpty()) {
+            throw new EntityNotFoundException("Adoptante no encontrado");
+        }
+
+        return adop.get();
     }
 
-    @Test
-    void testGetInvalidAdopter() {
-        assertThrows(EntityNotFoundException.class, () -> {
-            adopterService.getAdopter(0L);
-        });
+    public AdopterEntity createAdopter(AdopterEntity adopter) throws IllegalOperationException {
+        return adopterRepository.save(adopter);
     }
 
-    @Test
-    void testDeleteAdopterWithRequests() {
+    public AdopterEntity updateAdopter(Long id, AdopterEntity adopter)
+            throws EntityNotFoundException {
 
-        AdoptionRequestEntity request = factory.manufacturePojo(AdoptionRequestEntity.class);
-        request.setAdopter(adopter);
-        entityManager.persist(request);
+        Optional<AdopterEntity> existing = adopterRepository.findById(id);
 
-        assertThrows(IllegalOperationException.class, () -> {
-            adopterService.deleteAdopter(adopter.getId());
-        });
+        if (existing.isEmpty()) {
+            throw new EntityNotFoundException("Adoptante no encontrado");
+        }
+
+        adopter.setId(id);
+        return adopterRepository.save(adopter);
+    }
+
+    public void deleteAdopter(Long id)
+            throws EntityNotFoundException, IllegalOperationException {
+
+        Optional<AdopterEntity> adop = adopterRepository.findById(id);
+
+        if (adop.isEmpty()) {
+            throw new EntityNotFoundException("Adoptante no existe");
+        }
+
+
+        if (!adop.get().getAdoptionRequest().isEmpty()) {
+            throw new IllegalOperationException("No se puede eliminar adoptante con solicitudes");
+        }
+
+        adopterRepository.deleteById(id);
     }
 }
