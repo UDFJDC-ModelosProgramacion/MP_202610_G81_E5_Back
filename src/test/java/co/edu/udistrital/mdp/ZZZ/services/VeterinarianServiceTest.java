@@ -21,6 +21,7 @@ import co.edu.udistrital.mdp.pets.entities.VeterinarianEntity;
 import co.edu.udistrital.mdp.pets.entities.MedicalRecordEntity;
 import co.edu.udistrital.mdp.pets.exceptions.EntityNotFoundException;
 import co.edu.udistrital.mdp.pets.exceptions.IllegalOperationException;
+import co.edu.udistrital.mdp.pets.services.VeterinarianService; // 🔥 ESTE FALTABA
 
 import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
@@ -60,14 +61,12 @@ class VeterinarianServiceTest {
         }
     }
 
-    // GET ALL
     @Test
     void testGetVeterinarians() {
         List<VeterinarianEntity> list = veterinarianService.getVeterinarians();
         assertEquals(vetList.size(), list.size());
     }
 
-    // GET BY ID
     @Test
     void testGetVeterinarian() throws EntityNotFoundException {
         VeterinarianEntity vet = vetList.get(0);
@@ -78,7 +77,6 @@ class VeterinarianServiceTest {
         assertEquals(vet.getId(), result.getId());
     }
 
-    // GET INVALID
     @Test
     void testGetInvalidVeterinarian() {
         assertThrows(EntityNotFoundException.class, () -> {
@@ -86,7 +84,6 @@ class VeterinarianServiceTest {
         });
     }
 
-    // CREATE (licencia única)
     @Test
     void testCreateVeterinarian() throws IllegalOperationException {
 
@@ -111,7 +108,6 @@ class VeterinarianServiceTest {
         });
     }
 
-    // DELETE (con historial)
     @Test
     void testDeleteVeterinarianWithMedicalRecords() {
 
