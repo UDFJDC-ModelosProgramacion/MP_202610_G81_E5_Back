@@ -72,7 +72,7 @@ class EventServiceTest {
     void testCreateEventWithNullAttribute() {
         assertThrows(IllegalOperationException.class, () -> {
             EventEntity newEntity = new EventEntity();
-            newEntity.setName(null); // Atributo nulo gatilla la regla
+            newEntity.setName(null); 
             eventService.createEvent(newEntity);
         });
     }
