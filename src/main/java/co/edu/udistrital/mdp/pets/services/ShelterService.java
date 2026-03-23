@@ -62,7 +62,6 @@ public class ShelterService {
     public void deleteShelter(Long id) throws EntityNotFoundException, IllegalOperationException {
         ShelterEntity entity = getShelter(id);
 
-        // Ahora usamos getPets()
         if (entity.getPets() != null && !entity.getPets().isEmpty()) {
             throw new IllegalOperationException("No se puede eliminar un refugio con mascotas asignadas");
         }
