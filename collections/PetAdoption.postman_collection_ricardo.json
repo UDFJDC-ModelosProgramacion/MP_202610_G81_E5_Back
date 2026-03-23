@@ -1,0 +1,425 @@
+{
+  "info": {
+    "_postman_id": "6158abd4-e5d4-4bae-9393-10f52a11989c",
+    "name": "PetAdoption",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "52884337",
+    "_collection_link": "https://go.postman.co/collection/52884337-6158abd4-e5d4-4bae-9393-10f52a11989c?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Pets",
+      "item": [
+        {
+          "name": "Get a Pet",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "/pet/{id}",
+              "path": [
+                "pet",
+                "{id}"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Pet not found",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "/pet/{id}",
+                  "path": [
+                    "pet",
+                    "{id}"
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": null,
+              "header": null,
+              "cookie": [],
+              "body": "{\r\n  \"error\": \"Pet not Found\"\r\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get Pets",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "/pets",
+              "path": [
+                "pets"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create a Pet",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"Max\",\r\n  \"species\": \"Perro\",\r\n  \"breed\": \"Labrador\",\r\n  \"age\": 3,\r\n  \"status\": \"Disponible\",\r\n  \"temperament\": \"Juguetón\",\r\n  \"compKids\": true,\r\n  \"compOtherDogs\": true,\r\n  \"shelterId\": 1\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "/pets",
+              "path": [
+                "pets"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update a Pet",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "/pets/{id}",
+              "path": [
+                "pets",
+                "{id}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete a Pet",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "/pets/{id}",
+              "path": [
+                "pets",
+                "{id}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Medical Records for Pets",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "/pets/{id}/medical-records",
+              "path": [
+                "pets",
+                "{id}",
+                "medical-records"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Medical Record for Pet",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "/pets/{id}/medical-records{id}",
+              "path": [
+                "pets",
+                "{id}",
+                "medical-records{id}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Life Events for Pets",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "/pets/{id}/life-events",
+              "path": [
+                "pets",
+                "{id}",
+                "life-events"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Life Event for Pet",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "/pets/{id}/life-events/{id}",
+              "path": [
+                "pets",
+                "{id}",
+                "life-events",
+                "{id}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Adoption Processes for Pets",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "/pets/{id}/adoption-processes",
+              "path": [
+                "pets",
+                "{id}",
+                "adoption-processes"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Adoption Process for Pet",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "/pets/{id}/adoption-processes/{id}",
+              "path": [
+                "pets",
+                "{id}",
+                "adoption-processes",
+                "{id}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Adoption Requests for Pets",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "/pets/{id}/adoption-requests",
+              "path": [
+                "pets",
+                "{id}",
+                "adoption-requests"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Adoption Request for Pet",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "/pets/{id}/adoption-requests/{id}",
+              "path": [
+                "pets",
+                "{id}",
+                "adoption-requests",
+                "{id}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "LifeEvents",
+      "item": [
+        {
+          "name": "Get a Life Event",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "/life-events/{id}",
+              "path": [
+                "life-events",
+                "{id}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Life Events",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "/life-events",
+              "path": [
+                "life-events"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create a Life Event",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "/life-events",
+              "path": [
+                "life-events"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update a Life Event",
+          "request": {
+            "method": "GET",
+            "header": []
+          },
+          "response": []
+        },
+        {
+          "name": "Delete a Life Event",
+          "request": {
+            "method": "GET",
+            "header": []
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "TypeLifeEvents",
+      "item": [
+        {
+          "name": "Get a Type Life Event",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "/type-life-events/{id}",
+              "path": [
+                "type-life-events",
+                "{id}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Type Life Events",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "/type-life-events",
+              "path": [
+                "type-life-events"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Life Events for Types",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "/type-life-events/{id}/life-events",
+              "path": [
+                "type-life-events",
+                "{id}",
+                "life-events"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Life Event for Type",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "/type-life-events/{id}/life-events/{id}",
+              "path": [
+                "type-life-events",
+                "{id}",
+                "life-events",
+                "{id}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create a Type Life Event",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "/type-life-events",
+              "path": [
+                "type-life-events"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update a Type Life Event",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "/type-life-events/{id}",
+              "path": [
+                "type-life-events",
+                "{id}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete a Type Life Event",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "/type-life-events/{id}",
+              "path": [
+                "type-life-events",
+                "{id}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
