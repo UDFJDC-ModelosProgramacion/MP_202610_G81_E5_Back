@@ -1,0 +1,70 @@
+{
+  "name": "Shelters",
+  "item": [
+    {
+      "name": "Get Shelters",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "/shelters",
+          "path": ["shelters"]
+        }
+      }
+    },
+    {
+      "name": "Get a Shelter",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "/shelters/{id}",
+          "path": ["shelters", "{id}"]
+        }
+      }
+    },
+    {
+      "name": "Create a Shelter",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"shelterName\": \"Refugio Perritos Sanos\",\n  \"city\": \"Bogotá\",\n  \"location\": \"Calle 123 #45-67\"\n}",
+          "options": { "raw": { "language": "json" } }
+        },
+        "url": {
+          "raw": "/shelters",
+          "path": ["shelters"]
+        }
+      }
+    },
+    {
+      "name": "Update a Shelter",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"shelterName\": \"Refugio Actualizado\",\n  \"city\": \"Medellín\",\n  \"location\": \"Avenida Uribe\"\n}",
+          "options": { "raw": { "language": "json" } }
+        },
+        "url": {
+          "raw": "/shelters/{id}",
+          "path": ["shelters", "{id}"]
+        }
+      }
+    },
+    {
+      "name": "Delete a Shelter",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "/shelters/{id}",
+          "path": ["shelters", "{id}"]
+        }
+      }
+    }
+  ]
+}
