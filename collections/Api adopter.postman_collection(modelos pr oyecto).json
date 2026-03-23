@@ -1,0 +1,591 @@
+{
+  "info": {
+    "_postman_id": "9ffe2410-4930-4fc8-8b5e-053d5351ecfd",
+    "name": "Api adopter",
+    "description": "### Welcome to Postman! This is your first collection. \n\nCollections are your starting point for building and testing APIs. You can use this one to:\n\n• Group related requests\n• Test your API in real-world scenarios\n• Document and share your requests\n\nUpdate the name and overview whenever you’re ready to make it yours.\n\n[Learn more about Postman Collections.](https://learning.postman.com/docs/collections/collections-overview/)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "53391988",
+    "_collection_link": "https://go.postman.co/collection/53391988-9ffe2410-4930-4fc8-8b5e-053d5351ecfd?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Adopters",
+      "item": [
+        {
+          "name": "Crear adoptante",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"Juanito \",\r\n    \"address\": \"Calle 123\",\r\n    \"phoneNumber\": \"555-1234\",\r\n    \"email\": \"adoptante@ejemplo.com\"\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "/adopters",
+              "path": [
+                "adopters"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Consultar Adoptante",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "/adopters/{id}",
+              "path": [
+                "adopters",
+                "{id}"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "404 Not Found",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"error\": \"El adoptante con el ID especificado no existe en la base de datos.\"\r\n}\r\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "/adopters/{id}",
+                  "path": [
+                    "adopters",
+                    "{id}"
+                  ]
+                }
+              },
+              "_postman_previewlanguage": null,
+              "header": null,
+              "cookie": [],
+              "body": null
+            }
+          ]
+        },
+        {
+          "name": "Editar Adoptante",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"Juan Perez\",\r\n    \"address\": \"Nueva Avenida 456\",\r\n    \"phoneNumber\": \"310-9999999\",\r\n    \"email\": \"juan.perez@nuevoemail.com\"\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "200 OK",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"name\": \"Juan Perez\",\r\n    \"address\": \"Nueva Avenida 456\",\r\n    \"phoneNumber\": \"310-9999999\",\r\n    \"email\": \"juan.perez@nuevoemail.com\"\r\n}\r\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "_postman_previewlanguage": null,
+              "header": null,
+              "cookie": [],
+              "body": null
+            }
+          ]
+        },
+        {
+          "name": "Borrar Adoptante",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "/adopters/{id}",
+              "path": [
+                "adopters",
+                "{id}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Consultar Mascotas",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "/adopters/{id}/pets",
+              "path": [
+                "adopters",
+                "{id}",
+                "pets"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Consultar proceso de adopcion",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "/adopters/{id}/adoption-processes",
+              "path": [
+                "adopters",
+                "{id}",
+                "adoption-processes"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Consultar Solicitudes de addopcion",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "/adopters/{id}/adoption-processes",
+              "path": [
+                "adopters",
+                "{id}",
+                "adoption-processes"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Veterinarians",
+      "item": [
+        {
+          "name": "Listar veterinarios",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "/veterinarians",
+              "path": [
+                "veterinarians"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Registrar Veterinario",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{ \"name\": \"Dra. Casas\", \"specialty\": \"General\", \"licenseNumber\": \"VET-987\", \"officeNumber\": \"B-20\" }\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "/veterinarians",
+              "path": [
+                "veterinarians"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Consultar Historia por veterinario",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "[\r\n    {\r\n        \"id\": 10,\r\n        \"date\": \"2024-03-21\",\r\n        \"description\": \"Vacunación anual\",\r\n        \"petName\": \"Firulais\"\r\n    },\r\n    {\r\n        \"id\": 15,\r\n        \"date\": \"2024-04-10\",\r\n        \"description\": \"Control post-operatorio\",\r\n        \"petName\": \"Luna\"\r\n    }\r\n]\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "/veterinarians/{id}/medical-records",
+              "path": [
+                "veterinarians",
+                "{id}",
+                "medical-records"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Consultar Veterinario",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"id\": 1,\r\n    \"name\": \"Dra. Elena Casas\",\r\n    \"specialty\": \"Cirugía Veterinaria\",\r\n    \"licenseNumber\": \"VET-2024-88\",\r\n    \"phoneNumber\": \"555-0192\",\r\n    \"officeNumber\": \"B-204\",\r\n    \"status\": \"Available\"\r\n}\r\n"
+            },
+            "url": {
+              "raw": "/veterinarians/{id}",
+              "path": [
+                "veterinarians",
+                "{id}"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "200 OK",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"id\": 1,\r\n    \"name\": \"Dra. Elena Casas\",\r\n    \"specialty\": \"Cirugía Veterinaria\",\r\n    \"licenseNumber\": \"VET-2024-88\",\r\n    \"phoneNumber\": \"555-0192\",\r\n    \"officeNumber\": \"B-204\",\r\n    \"status\": \"Available\"\r\n}\r\n"
+                },
+                "url": {
+                  "raw": "/veterinarians/{id}",
+                  "path": [
+                    "veterinarians",
+                    "{id}"
+                  ]
+                }
+              },
+              "_postman_previewlanguage": null,
+              "header": null,
+              "cookie": [],
+              "body": null
+            }
+          ]
+        },
+        {
+          "name": "Editar veterinario",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"name\": \"Dra. Casas\", \"specialty\": \"Cirugía\", \"officeNumber\": \"C-302\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "/veterinarians/{id}",
+              "path": [
+                "veterinarians",
+                "{id}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Borrar veterinario",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "/veterinarians/{id}",
+              "path": [
+                "veterinarians",
+                "{id}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Consultar LifeEvents",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "/veterinarians/{id}/Life-events",
+              "path": [
+                "veterinarians",
+                "{id}",
+                "Life-events"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Consultar proceso de adopcion",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "/veterinarians/{id}/adoption-processes",
+              "path": [
+                "veterinarians",
+                "{id}",
+                "adoption-processes"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "MedicalRecord",
+      "item": [
+        {
+          "name": "Crear Historia clinica",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"date\": \"2024-03-21\",\r\n    \"description\": \"Vacuna contra la rabia\",\r\n    \"petId\": 10,\r\n    \"veterinarianId\": 5\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "/medical-records",
+              "path": [
+                "medical-records"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Consultar Historia clinica",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"id\": 10,\r\n    \"date\": \"2024-03-21\",\r\n    \"description\": \"Chequeo de rutina y vacunas anuales\",\r\n    \"pet\": {\r\n        \"id\": 5,\r\n        \"name\": \"Firulais\",\r\n        \"breed\": \"Labrador\"\r\n    },\r\n    \"veterinarian\": {\r\n        \"id\": 1,\r\n        \"name\": \"Dra. Casas\",\r\n        \"specialty\": \"General\"\r\n    }\r\n}\r\n\r\n"
+            },
+            "url": {
+              "raw": "/medical-records/{id}",
+              "path": [
+                "medical-records",
+                "{id}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Eliminar Historia clinica",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "/medical-recods/{id}",
+              "path": [
+                "medical-recods",
+                "{id}"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "204 No Content",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "/medical-recods/{id}",
+                  "path": [
+                    "medical-recods",
+                    "{id}"
+                  ]
+                }
+              },
+              "_postman_previewlanguage": null,
+              "header": null,
+              "cookie": [],
+              "body": null
+            },
+            {
+              "name": "404 error al borrar",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"message\": \"No se pudo eliminar: la historia clínica con ID 10 no existe.\"\r\n}\r\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "/medical-recods/{id}",
+                  "path": [
+                    "medical-recods",
+                    "{id}"
+                  ]
+                }
+              },
+              "_postman_previewlanguage": null,
+              "header": null,
+              "cookie": [],
+              "body": null
+            }
+          ]
+        },
+        {
+          "name": "Editar Historia clinica",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"description\": \"Actualización: El paciente evoluciona bien\", \"treatment\": \"Continuar con analgésicos\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "/medical-records/{id}",
+              "path": [
+                "medical-records",
+                "{id}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Get data",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "postman-echo.com/get",
+          "host": [
+            "postman-echo",
+            "com"
+          ],
+          "path": [
+            "get"
+          ]
+        },
+        "description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+      },
+      "response": []
+    },
+    {
+      "name": "Post data",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Successful POST request\", function () {",
+              "    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+              "});",
+              ""
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n\t\"name\": \"Add your name in the body\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "postman-echo.com/post",
+          "host": [
+            "postman-echo",
+            "com"
+          ],
+          "path": [
+            "post"
+          ]
+        },
+        "description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+      },
+      "response": []
+    }
+  ]
+}
