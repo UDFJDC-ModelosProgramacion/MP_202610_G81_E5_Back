@@ -2,7 +2,6 @@ package co.edu.udistrital.mdp.pets.entities;
 import java.time.LocalDate;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import lombok.Data;
 import uk.co.jemos.podam.common.PodamExclude;
@@ -20,7 +19,7 @@ public class MedicalRecordEntity extends BaseEntity {
     private PetEntity pet;
 
     @PodamExclude
-    @ManyToMany
+    @ManyToOne
     @JoinColumn(name = "veterinarian_id")
     private VeterinarianEntity veterinarian;
 }
