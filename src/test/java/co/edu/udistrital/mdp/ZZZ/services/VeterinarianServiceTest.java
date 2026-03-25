@@ -1,28 +1,26 @@
-package co.edu.udistrital.mdp.pets.services;
-
-import static org.junit.jupiter.api.Assertions.*;
+package co.edu.udistrital.mdp.ZZZ.services;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import jakarta.transaction.Transactional;
-
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.ContextConfiguration;
 
 import co.edu.udistrital.mdp.pets.MainApplication;
-import co.edu.udistrital.mdp.pets.entities.VeterinarianEntity;
 import co.edu.udistrital.mdp.pets.entities.MedicalRecordEntity;
+import co.edu.udistrital.mdp.pets.entities.VeterinarianEntity;
 import co.edu.udistrital.mdp.pets.exceptions.EntityNotFoundException;
 import co.edu.udistrital.mdp.pets.exceptions.IllegalOperationException;
 import co.edu.udistrital.mdp.pets.services.VeterinarianService;
-
+import jakarta.transaction.Transactional;
 import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
 
@@ -108,6 +106,9 @@ class VeterinarianServiceTest {
         MedicalRecordEntity record = factory.manufacturePojo(MedicalRecordEntity.class);
         record.setVeterinarian(vet);
         entityManager.persist(record);
+        
+        vet.getMedicalRecords().add(record);
+        entityManager.merge(vet);
 
         assertThrows(IllegalOperationException.class, () -> {
             veterinarianService.deleteVeterinarian(vet.getId());

@@ -1,4 +1,4 @@
-package co.edu.udistrital.mdp.pets.services;
+package co.edu.udistrital.mdp.ZZZ.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,12 +17,10 @@ public class AdopterService {
     @Autowired
     private AdopterRepository adopterRepository;
 
-
     public List<AdopterEntity> getAdopters() {
         return adopterRepository.findAll();
     }
 
-    
     public AdopterEntity getAdopter(Long id) throws EntityNotFoundException {
         Optional<AdopterEntity> adop = adopterRepository.findById(id);
 
@@ -33,14 +31,12 @@ public class AdopterService {
         return adop.get();
     }
 
-
     public AdopterEntity createAdopter(AdopterEntity adopter) throws IllegalOperationException {
         return adopterRepository.save(adopter);
     }
 
-
     public AdopterEntity updateAdopter(Long id, AdopterEntity adopter)
-            throws EntityNotFoundException, IllegalOperationException {
+            throws EntityNotFoundException {
 
         Optional<AdopterEntity> existing = adopterRepository.findById(id);
 
@@ -60,6 +56,7 @@ public class AdopterService {
         if (adop.isEmpty()) {
             throw new EntityNotFoundException("Adoptante no existe");
         }
+
 
         if (!adop.get().getAdoptionRequest().isEmpty()) {
             throw new IllegalOperationException("No se puede eliminar adoptante con solicitudes");

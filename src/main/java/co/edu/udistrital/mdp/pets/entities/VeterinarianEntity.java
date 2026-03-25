@@ -24,7 +24,7 @@ public class VeterinarianEntity extends BaseEntity {
     private TrialCohabitationEntity trialCohabitation;
 
     @PodamExclude
-    @OneToMany(mappedBy = "veterinarian")
+    @ManyToMany(mappedBy = "veterinarian")
     private List<MedicalRecordEntity> medicalRecords=new ArrayList <>();
 
     @PodamExclude

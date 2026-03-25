@@ -90,4 +90,5 @@ class MedicalRecordServiceTest {
         medicalRecordService.deleteMedicalRecord(existing.getId());
         assertNull(entityManager.find(MedicalRecordEntity.class, existing.getId()));
     }
+    
 }
