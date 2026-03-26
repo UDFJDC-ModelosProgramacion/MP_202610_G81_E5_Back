@@ -1,0 +1,70 @@
+{
+  "name": "Events",
+  "item": [
+    {
+      "name": "Get Events",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "/events",
+          "path": ["events"]
+        }
+      }
+    },
+    {
+      "name": "Get an Event",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "/events/{id}",
+          "path": ["events", "{id}"]
+        }
+      }
+    },
+    {
+      "name": "Create an Event",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Feria de Adopción Bogotá\",\n  \"date\": \"2026-05-20\",\n  \"type\": \"Adopción masiva\",\n  \"shelter\": { \"id\": 1 }\n}",
+          "options": { "raw": { "language": "json" } }
+        },
+        "url": {
+          "raw": "/events",
+          "path": ["events"]
+        }
+      }
+    },
+    {
+      "name": "Update an Event",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Feria de Adopción - Jornada Tarde\",\n  \"date\": \"2026-05-21\",\n  \"type\": \"Feria\",\n  \"shelter\": { \"id\": 1 }\n}",
+          "options": { "raw": { "language": "json" } }
+        },
+        "url": {
+          "raw": "/events/{id}",
+          "path": ["events", "{id}"]
+        }
+      }
+    },
+    {
+      "name": "Delete an Event",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "/events/{id}",
+          "path": ["events", "{id}"]
+        }
+      }
+    }
+  ]
+}

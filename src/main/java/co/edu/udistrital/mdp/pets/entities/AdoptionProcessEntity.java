@@ -13,25 +13,26 @@ import uk.co.jemos.podam.common.PodamExclude;
 @Entity
 public class AdoptionProcessEntity extends BaseEntity {
     
-    @PodamExclude
+    private LocalDate requestDate;
+    private String status;
 
+    @PodamExclude
     @ManyToOne 
     @JoinColumn(name = "adopter_id")
     private AdopterEntity adopter;
 
+    @PodamExclude
     @ManyToOne
     @JoinColumn(name = "pet_id")
     private PetEntity pet;
 
+    @PodamExclude
     @OneToOne
+    @JoinColumn(name = "request_id")
     private AdoptionRequestEntity request;
 
+    @PodamExclude
     @ManyToOne
     @JoinColumn(name = "veterinarian_id")
     private VeterinarianEntity veterinarian;
-
-    private LocalDate requestDate;
-    private String status;
-
-
 }

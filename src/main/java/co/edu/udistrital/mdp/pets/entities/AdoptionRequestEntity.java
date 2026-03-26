@@ -10,18 +10,23 @@ import uk.co.jemos.podam.common.PodamExclude;
 @Data
 @Entity
 public class AdoptionRequestEntity extends BaseEntity {
-    
-    @PodamExclude
 
+    @PodamExclude
     @ManyToOne
     @JoinColumn(name = "adopter_id")
     private AdopterEntity adopter;
 
-     @OneToOne
+    @PodamExclude
+    @OneToOne(mappedBy = "request")
     private AdoptionProcessEntity adoptionProcess;
-    private String idPet;
-    private String idAdopter;
+
+    @PodamExclude
+    @ManyToOne
+    @JoinColumn(name = "pet_id")
+    private PetEntity pet;
+
     private String purpose;
     private String papers;
+    private String status; // aprobado, cerrado
 
 }

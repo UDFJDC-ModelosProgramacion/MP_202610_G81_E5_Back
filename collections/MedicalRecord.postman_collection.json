@@ -1,0 +1,70 @@
+{
+  "name": "MedicalRecords",
+  "item": [
+    {
+      "name": "Get Medical Records",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "/medical-records",
+          "path": ["medical-records"]
+        }
+      }
+    },
+    {
+      "name": "Get a Medical Record",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "/medical-records/{id}",
+          "path": ["medical-records", "{id}"]
+        }
+      }
+    },
+    {
+      "name": "Create a Medical Record",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"vaccinations\": \"Rabia, Parvovirus\",\n  \"upcomingDates\": \"2026-06-15\",\n  \"veterinarian\": \"Dr. Juan Pérez\",\n  \"pet\": { \"id\": 1 }\n}",
+          "options": { "raw": { "language": "json" } }
+        },
+        "url": {
+          "raw": "/medical-records",
+          "path": ["medical-records"]
+        }
+      }
+    },
+    {
+      "name": "Update a Medical Record",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"vaccinations\": \"Refuerzo Rabia\",\n  \"upcomingDates\": \"2027-01-10\",\n  \"veterinarian\": \"Dra. María López\",\n  \"pet\": { \"id\": 1 }\n}",
+          "options": { "raw": { "language": "json" } }
+        },
+        "url": {
+          "raw": "/medical-records/{id}",
+          "path": ["medical-records", "{id}"]
+        }
+      }
+    },
+    {
+      "name": "Delete a Medical Record",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "/medical-records/{id}",
+          "path": ["medical-records", "{id}"]
+        }
+      }
+    }
+  ]
+}
