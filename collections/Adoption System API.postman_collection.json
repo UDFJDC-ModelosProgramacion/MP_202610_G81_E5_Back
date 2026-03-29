@@ -141,12 +141,12 @@
               }
             },
             "url": {
-              "raw": "{{base_url}}/adoption-process",
+              "raw": "{{base_url}}/adoption-processes",
               "host": [
                 "{{base_url}}"
               ],
               "path": [
-                "adoption-process"
+                "adoption-processes"
               ]
             }
           },
@@ -210,12 +210,12 @@
               "raw": "{\r\n  \"requestId\": 101\r\n}"
             },
             "url": {
-              "raw": "{{base_url}}/adoption-process/:id",
+              "raw": "{{base_url}}/adoption-processes/:id",
               "host": [
                 "{{base_url}}"
               ],
               "path": [
-                "adoption-process",
+                "adoption-processes",
                 ":id"
               ],
               "variable": [
@@ -234,12 +234,12 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{base_url}}/adoption-process",
+              "raw": "{{base_url}}/adoption-processes",
               "host": [
                 "{{base_url}}"
               ],
               "path": [
-                "adoption-process"
+                "adoption-processes"
               ]
             }
           },
@@ -309,6 +309,30 @@
         },
         {
           "name": "New Request",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
           "request": {
             "method": "PATCH",
             "header": [],
@@ -326,9 +350,42 @@
         },
         {
           "name": "New Request",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
           "request": {
             "method": "DELETE",
             "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
             "url": {
               "raw": "{{base_url}}/cohabitation-trials/[trialCohabitationId]",
               "host": [
@@ -376,7 +433,7 @@
               "variable": [
                 {
                   "key": "id",
-                  "value": "101"
+                  "value": "1"
                 }
               ]
             }
