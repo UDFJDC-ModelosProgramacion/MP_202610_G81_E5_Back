@@ -39,7 +39,7 @@
         {
           "name": "New Request",
           "request": {
-            "method": "PATCH",
+            "method": "PUT",
             "header": [],
             "body": {
               "mode": "raw",
@@ -155,7 +155,7 @@
         {
           "name": "New Request",
           "request": {
-            "method": "PATCH",
+            "method": "PUT",
             "header": [],
             "body": {
               "mode": "raw",
@@ -167,12 +167,12 @@
               }
             },
             "url": {
-              "raw": "{{base_url}}/adoption-process/",
+              "raw": "{{base_url}}/adoption-processes/",
               "host": [
                 "{{base_url}}"
               ],
               "path": [
-                "adoption-process",
+                "adoption-processes",
                 ""
               ]
             }
@@ -334,7 +334,7 @@
             }
           ],
           "request": {
-            "method": "PATCH",
+            "method": "PUT",
             "header": [],
             "url": {
               "raw": "{{base_url}}/cohabitation-trials",
