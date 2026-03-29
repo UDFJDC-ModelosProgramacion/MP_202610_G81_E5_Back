@@ -6,9 +6,11 @@ import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -33,6 +35,8 @@ public class AdoptionProcessController {
 
     private ModelMapper modelMapper;
 
+
+    // Se encuentran todos los procesos de adopción
     @GetMapping
     @ResponseStatus(code = HttpStatus.OK)
     public List<AdoptionProcessDTO> getAllAdoptionProcesses() {
@@ -42,6 +46,7 @@ public class AdoptionProcessController {
         }.getType());
     }
 
+    // Se encuentra un proceso de adopción por su id
     @GetMapping(value ="/{id}")
     @ResponseStatus(code = HttpStatus.OK)
     public AdoptionProcessDTO findOne(@PathVariable Long id) throws EntityNotFoundException {
@@ -49,6 +54,7 @@ public class AdoptionProcessController {
         return modelMapper.map(adoptionProcessEntity, AdoptionProcessDTO.class);
     }
 
+    // Se crea un proceso de adopción. Para crearlo la solicitud de adopción debe existir y estar aprobada.
     @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)
     public AdoptionProcessDTO create(@RequestBody AdoptionProcessDTO adoptionProcessDTO) throws IllegalOperationException, EntityNotFoundException{
@@ -58,4 +64,21 @@ public class AdoptionProcessController {
         return modelMapper.map(adoptionProcessEntity, AdoptionProcessDTO.class);
     }
 
+    // Se actualiza un proceso de adopción. Para actualizarlo se debe enviar el id del proceso de adopción en la ruta y el id de la solicitud de adopción en el cuerpo de la petición.
+    @PutMapping(value ="/{id}")
+    @ResponseStatus(code = HttpStatus.OK)
+    public AdoptionProcessDTO update(@PathVariable Long id, @RequestBody AdoptionProcessDTO adoptionProcessDTO) 
+                    throws EntityNotFoundException, IllegalOperationException {
+
+        AdoptionProcessEntity adoptionProcessEntity = adoptionProcessService.updateAdoptionProcess(id, modelMapper.map(adoptionProcessDTO, AdoptionProcessEntity.class));
+
+        return modelMapper.map(adoptionProcessEntity, AdoptionProcessDTO.class);
+    }
+
+    // Se elimina un proceso de adopción por su id
+    @DeleteMapping(value ="/{id}")
+    @ResponseStatus(code = HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable Long id) throws EntityNotFoundException, IllegalOperationException {
+        adoptionProcessService.deleteAdoptionProcess(id);
+    }
 }
