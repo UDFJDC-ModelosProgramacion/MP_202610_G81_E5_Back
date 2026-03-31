@@ -12,7 +12,7 @@ import uk.co.jemos.podam.common.PodamExclude;
 @Data
 @Entity
 public class ShelterEntity extends BaseEntity {
-    private String shelterName;
+    private String name;
     private String city;
     private String location;
 
