@@ -18,9 +18,9 @@ public class AdoptionRequestDTO {
 
     private String status;
 
-    private AdoptionProcessDTO adoptionProcess;
-
     private AdopterDTO adopter;
+
+    private AdoptionProcessDTO adoptionProcess;
 
     private PetDTO pet;
 
