@@ -81,7 +81,7 @@ public class TrialCohabitationServiceTest {
         TrialCohabitationEntity trial = factory.manufacturePojo(TrialCohabitationEntity.class);
         trial.setAdoptionProcess(process);
         trial.setVeterinarian(approvedProcess.getVeterinarian());
-        trial.setStarDate(LocalDate.now());
+        trial.setStartDate(LocalDate.now());
         trial.setEndDate(LocalDate.now().plusDays(7));
         trial.setStatus("abierta");
 
@@ -97,7 +97,7 @@ public class TrialCohabitationServiceTest {
         TrialCohabitationEntity trial = factory.manufacturePojo(TrialCohabitationEntity.class);
         trial.setAdoptionProcess(approvedProcess);
         trial.setVeterinarian(approvedProcess.getVeterinarian());
-        trial.setStarDate(LocalDate.now());
+        trial.setStartDate(LocalDate.now());
         trial.setEndDate(LocalDate.now().plusDays(7));
         trial.setStatus("abierta");
         entityManager.persist(trial);
@@ -105,7 +105,7 @@ public class TrialCohabitationServiceTest {
         TrialCohabitationEntity toUpdate = factory.manufacturePojo(TrialCohabitationEntity.class);
         toUpdate.setAdoptionProcess(approvedProcess);
         toUpdate.setVeterinarian(approvedProcess.getVeterinarian());
-        toUpdate.setStarDate(LocalDate.now().plusDays(1));
+        toUpdate.setStartDate(LocalDate.now().plusDays(1));
         toUpdate.setEndDate(trial.getEndDate());
         toUpdate.setStatus("abierta");
 
@@ -121,7 +121,7 @@ public class TrialCohabitationServiceTest {
         TrialCohabitationEntity trial = factory.manufacturePojo(TrialCohabitationEntity.class);
         trial.setAdoptionProcess(approvedProcess);
         trial.setVeterinarian(approvedProcess.getVeterinarian());
-        trial.setStarDate(LocalDate.now());
+        trial.setStartDate(LocalDate.now());
         trial.setEndDate(LocalDate.now().plusDays(7));
         trial.setStatus("abierta");
 

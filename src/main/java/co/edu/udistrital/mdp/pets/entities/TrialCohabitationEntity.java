@@ -22,7 +22,7 @@ public class TrialCohabitationEntity extends BaseEntity {
     @OneToOne
     private AdoptionProcessEntity adoptionProcess;
 
-    private LocalDate starDate;
+    private LocalDate startDate;
     private LocalDate endDate;
     private String status;
 }

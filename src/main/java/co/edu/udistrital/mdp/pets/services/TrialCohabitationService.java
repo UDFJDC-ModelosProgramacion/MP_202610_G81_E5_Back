@@ -46,11 +46,11 @@ public class TrialCohabitationService {
             throw new IllegalOperationException("El proceso de adopción debe estar aprobado para crear la prueba de cohabitación");
         }
 
-        if (trialCohabitation.getStarDate() == null || trialCohabitation.getEndDate() == null) {
+        if (trialCohabitation.getStartDate() == null || trialCohabitation.getEndDate() == null) {
             throw new IllegalOperationException("Las fechas de inicio y fin de la prueba de cohabitación no pueden ser nulas");
         }
 
-        if (trialCohabitation.getStarDate().isAfter(trialCohabitation.getEndDate())) {
+        if (trialCohabitation.getStartDate().isAfter(trialCohabitation.getEndDate())) {
             throw new IllegalOperationException("La fecha de inicio no puede ser posterior a la fecha de fin");
         }
 
@@ -116,7 +116,7 @@ public class TrialCohabitationService {
 
         existing.setAdoptionProcess(trialCohabitation.getAdoptionProcess());
         existing.setVeterinarian(trialCohabitation.getVeterinarian());
-        existing.setStarDate(trialCohabitation.getStarDate());
+        existing.setStartDate(trialCohabitation.getStartDate());
         existing.setEndDate(trialCohabitation.getEndDate());
         existing.setStatus(trialCohabitation.getStatus());
 
