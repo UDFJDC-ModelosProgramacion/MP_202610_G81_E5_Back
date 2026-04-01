@@ -46,11 +46,11 @@ public class TrialCohabitationService {
             throw new IllegalOperationException("El proceso de adopción debe estar aprobado para crear la prueba de cohabitación");
         }
 
-        if (trialCohabitation.getTrialStarDate() == null || trialCohabitation.getTrialEndDate() == null) {
+        if (trialCohabitation.getStartDate() == null || trialCohabitation.getEndDate() == null) {
             throw new IllegalOperationException("Las fechas de inicio y fin de la prueba de cohabitación no pueden ser nulas");
         }
 
-        if (trialCohabitation.getTrialStarDate().isAfter(trialCohabitation.getTrialEndDate())) {
+        if (trialCohabitation.getStartDate().isAfter(trialCohabitation.getEndDate())) {
             throw new IllegalOperationException("La fecha de inicio no puede ser posterior a la fecha de fin");
         }
 
@@ -106,18 +106,18 @@ public class TrialCohabitationService {
         }
 
         TrialCohabitationEntity existing = optional.get();
-        if (trialCohabitation.getTrialEndDate() == null) {
+        if (trialCohabitation.getEndDate() == null) {
             throw new IllegalOperationException("La fecha final no puede ser nula");
         }
 
-        if (trialCohabitation.getTrialEndDate().equals(existing.getTrialEndDate())) {
+        if (trialCohabitation.getEndDate().equals(existing.getEndDate())) {
             throw new IllegalOperationException("La fecha final debe ser diferente a la actual");
         }
 
         existing.setAdoptionProcess(trialCohabitation.getAdoptionProcess());
         existing.setVeterinarian(trialCohabitation.getVeterinarian());
-        existing.setTrialStarDate(trialCohabitation.getTrialStarDate());
-        existing.setTrialEndDate(trialCohabitation.getTrialEndDate());
+        existing.setStartDate(trialCohabitation.getStartDate());
+        existing.setEndDate(trialCohabitation.getEndDate());
         existing.setStatus(trialCohabitation.getStatus());
 
         return trialCohabitationRepository.save(existing);

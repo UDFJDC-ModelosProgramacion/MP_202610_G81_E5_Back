@@ -59,7 +59,7 @@ class ShelterServiceTest {
     void testCreateShelterWithNullAttributes() {
         assertThrows(IllegalOperationException.class, () -> {
             ShelterEntity newEntity = new ShelterEntity();
-            newEntity.setShelterName(null);
+            newEntity.setName(null);
             shelterService.createShelter(newEntity);
         });
     }

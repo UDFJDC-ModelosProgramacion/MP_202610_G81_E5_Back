@@ -18,10 +18,9 @@ public class VeterinarianEntity extends BaseEntity {
     @PodamExclude
     private ShelterEntity shelter;
 
-    @OneToOne
-    @JoinColumn(name = "trialCohabitation_id")
     @PodamExclude
-    private TrialCohabitationEntity trialCohabitation;
+    @OneToMany(mappedBy = "veterinarian")
+    private List<TrialCohabitationEntity> trialCohabitation = new ArrayList <>();
 
     @PodamExclude
     @OneToMany(mappedBy = "veterinarian")

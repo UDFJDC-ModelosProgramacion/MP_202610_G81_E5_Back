@@ -81,8 +81,8 @@ public class TrialCohabitationServiceTest {
         TrialCohabitationEntity trial = factory.manufacturePojo(TrialCohabitationEntity.class);
         trial.setAdoptionProcess(process);
         trial.setVeterinarian(approvedProcess.getVeterinarian());
-        trial.setTrialStarDate(LocalDate.now());
-        trial.setTrialEndDate(LocalDate.now().plusDays(7));
+        trial.setStartDate(LocalDate.now());
+        trial.setEndDate(LocalDate.now().plusDays(7));
         trial.setStatus("abierta");
 
         IllegalOperationException exception = assertThrows(IllegalOperationException.class, () -> {
@@ -97,16 +97,16 @@ public class TrialCohabitationServiceTest {
         TrialCohabitationEntity trial = factory.manufacturePojo(TrialCohabitationEntity.class);
         trial.setAdoptionProcess(approvedProcess);
         trial.setVeterinarian(approvedProcess.getVeterinarian());
-        trial.setTrialStarDate(LocalDate.now());
-        trial.setTrialEndDate(LocalDate.now().plusDays(7));
+        trial.setStartDate(LocalDate.now());
+        trial.setEndDate(LocalDate.now().plusDays(7));
         trial.setStatus("abierta");
         entityManager.persist(trial);
 
         TrialCohabitationEntity toUpdate = factory.manufacturePojo(TrialCohabitationEntity.class);
         toUpdate.setAdoptionProcess(approvedProcess);
         toUpdate.setVeterinarian(approvedProcess.getVeterinarian());
-        toUpdate.setTrialStarDate(LocalDate.now().plusDays(1));
-        toUpdate.setTrialEndDate(trial.getTrialEndDate());
+        toUpdate.setStartDate(LocalDate.now().plusDays(1));
+        toUpdate.setEndDate(trial.getEndDate());
         toUpdate.setStatus("abierta");
 
         IllegalOperationException exception = assertThrows(IllegalOperationException.class, () -> {
@@ -121,8 +121,8 @@ public class TrialCohabitationServiceTest {
         TrialCohabitationEntity trial = factory.manufacturePojo(TrialCohabitationEntity.class);
         trial.setAdoptionProcess(approvedProcess);
         trial.setVeterinarian(approvedProcess.getVeterinarian());
-        trial.setTrialStarDate(LocalDate.now());
-        trial.setTrialEndDate(LocalDate.now().plusDays(7));
+        trial.setStartDate(LocalDate.now());
+        trial.setEndDate(LocalDate.now().plusDays(7));
         trial.setStatus("abierta");
 
         TrialCohabitationEntity result = trialCohabitationService.createTrialCohabitation(trial);

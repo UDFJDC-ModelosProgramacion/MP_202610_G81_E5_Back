@@ -31,7 +31,7 @@ public class ShelterService {
     @Transactional
     public ShelterEntity createShelter(ShelterEntity entity) throws IllegalOperationException {
    
-        if (entity.getShelterName() == null || entity.getLocation() == null) {
+        if (entity.getName() == null || entity.getLocation() == null) {
             throw new IllegalOperationException("Los atributos no deben ser nulos");
         }
         
@@ -51,7 +51,7 @@ public class ShelterService {
             }
         }
 
-        existing.setShelterName(entity.getShelterName());
+        existing.setName(entity.getName());
         existing.setCity(entity.getCity());
         existing.setLocation(entity.getLocation());
         

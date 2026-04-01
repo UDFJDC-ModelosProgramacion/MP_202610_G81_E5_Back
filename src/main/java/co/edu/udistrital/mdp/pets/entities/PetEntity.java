@@ -16,13 +16,13 @@ import java.util.List;
 public class PetEntity extends BaseEntity {
 
     private String name;
-    private String species;
+    private String specie;
     private String breed;
     private Integer age;
     private String status;
     private String temperament;
     private Boolean compKids;
-    private Boolean compOtherDogs;
+    private Boolean compOtherPets;
 
     @PodamExclude
     @OneToMany(mappedBy = "pet")
