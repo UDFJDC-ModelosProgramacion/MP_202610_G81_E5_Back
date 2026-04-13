@@ -1,5 +1,11 @@
 package co.edu.udistrital.mdp.pets.dto;
 
-public class ShelterDTO {
+import lombok.Data;
 
+@Data
+public class ShelterDTO {
+    private Long id; 
+    private String name;
+    private String city;
+    private String location;
 }
