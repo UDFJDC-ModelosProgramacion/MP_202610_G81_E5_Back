@@ -7,7 +7,7 @@
         "method": "GET",
         "header": [],
         "url": {
-          "raw": "/shelters",
+          "raw": "{{base_url}}/shelters",
           "path": ["shelters"]
         }
       }
@@ -18,7 +18,7 @@
         "method": "GET",
         "header": [],
         "url": {
-          "raw": "/shelters/{id}",
+          "raw": "{{base_url}}/shelters/{id}",
           "path": ["shelters", "{id}"]
         }
       }
@@ -34,7 +34,7 @@
           "options": { "raw": { "language": "json" } }
         },
         "url": {
-          "raw": "/shelters",
+          "raw": "{{base_url}}/shelters",
           "path": ["shelters"]
         }
       }
@@ -50,7 +50,7 @@
           "options": { "raw": { "language": "json" } }
         },
         "url": {
-          "raw": "/shelters/{id}",
+          "raw": "{{base_url}}/shelters/{id}",
           "path": ["shelters", "{id}"]
         }
       }
@@ -61,7 +61,7 @@
         "method": "DELETE",
         "header": [],
         "url": {
-          "raw": "/shelters/{id}",
+          "raw": "{{base_url}}/shelters/{id}",
           "path": ["shelters", "{id}"]
         }
       }
