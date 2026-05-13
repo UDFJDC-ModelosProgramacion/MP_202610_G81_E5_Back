@@ -16,9 +16,12 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{base_url}}/pet/{id}",
+              "raw": "{{base_url}}/pets/{id}",
+              "host": [
+                "{{base_url}}"
+              ],
               "path": [
-                "pet",
+                "pets",
                 "{id}"
               ]
             }
@@ -30,7 +33,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{base_url}}/pet/{id}",
+                  "raw": "/pet/{id}",
                   "path": [
                     "pet",
                     "{id}"
@@ -53,6 +56,9 @@
             "header": [],
             "url": {
               "raw": "{{base_url}}/pets",
+              "host": [
+                "{{base_url}}"
+              ],
               "path": [
                 "pets"
               ]
@@ -76,6 +82,9 @@
             },
             "url": {
               "raw": "{{base_url}}/pets",
+              "host": [
+                "{{base_url}}"
+              ],
               "path": [
                 "pets"
               ]
@@ -90,6 +99,9 @@
             "header": [],
             "url": {
               "raw": "{{base_url}}/pets/{id}",
+              "host": [
+                "{{base_url}}"
+              ],
               "path": [
                 "pets",
                 "{id}"
@@ -105,6 +117,9 @@
             "header": [],
             "url": {
               "raw": "{{base_url}}/pets/{id}",
+              "host": [
+                "{{base_url}}"
+              ],
               "path": [
                 "pets",
                 "{id}"
@@ -120,6 +135,9 @@
             "header": [],
             "url": {
               "raw": "{{base_url}}/pets/{id}/medical-records",
+              "host": [
+                "{{base_url}}"
+              ],
               "path": [
                 "pets",
                 "{id}",
@@ -136,6 +154,9 @@
             "header": [],
             "url": {
               "raw": "{{base_url}}/pets/{id}/medical-records{id}",
+              "host": [
+                "{{base_url}}"
+              ],
               "path": [
                 "pets",
                 "{id}",
@@ -152,6 +173,9 @@
             "header": [],
             "url": {
               "raw": "{{base_url}}/pets/{id}/life-events",
+              "host": [
+                "{{base_url}}"
+              ],
               "path": [
                 "pets",
                 "{id}",
@@ -168,6 +192,9 @@
             "header": [],
             "url": {
               "raw": "{{base_url}}/pets/{id}/life-events/{id}",
+              "host": [
+                "{{base_url}}"
+              ],
               "path": [
                 "pets",
                 "{id}",
@@ -185,6 +212,9 @@
             "header": [],
             "url": {
               "raw": "{{base_url}}/pets/{id}/adoption-processes",
+              "host": [
+                "{{base_url}}"
+              ],
               "path": [
                 "pets",
                 "{id}",
@@ -201,6 +231,9 @@
             "header": [],
             "url": {
               "raw": "{{base_url}}/pets/{id}/adoption-processes/{id}",
+              "host": [
+                "{{base_url}}"
+              ],
               "path": [
                 "pets",
                 "{id}",
@@ -218,6 +251,9 @@
             "header": [],
             "url": {
               "raw": "{{base_url}}/pets/{id}/adoption-requests",
+              "host": [
+                "{{base_url}}"
+              ],
               "path": [
                 "pets",
                 "{id}",
@@ -234,6 +270,9 @@
             "header": [],
             "url": {
               "raw": "{{base_url}}/pets/{id}/adoption-requests/{id}",
+              "host": [
+                "{{base_url}}"
+              ],
               "path": [
                 "pets",
                 "{id}",
@@ -256,6 +295,9 @@
             "header": [],
             "url": {
               "raw": "{{base_url}}/life-events/{id}",
+              "host": [
+                "{{base_url}}"
+              ],
               "path": [
                 "life-events",
                 "{id}"
@@ -271,6 +313,9 @@
             "header": [],
             "url": {
               "raw": "{{base_url}}/life-events",
+              "host": [
+                "{{base_url}}"
+              ],
               "path": [
                 "life-events"
               ]
@@ -285,6 +330,9 @@
             "header": [],
             "url": {
               "raw": "{{base_url}}/life-events",
+              "host": [
+                "{{base_url}}"
+              ],
               "path": [
                 "life-events"
               ]
@@ -295,16 +343,36 @@
         {
           "name": "Update a Life Event",
           "request": {
-            "method": "GET",
-            "header": []
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/life-events/{id}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "life-events",
+                "{id}"
+              ]
+            }
           },
           "response": []
         },
         {
           "name": "Delete a Life Event",
           "request": {
-            "method": "GET",
-            "header": []
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/life-events/{id}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "life-events",
+                "{id}"
+              ]
+            }
           },
           "response": []
         }
@@ -320,6 +388,9 @@
             "header": [],
             "url": {
               "raw": "{{base_url}}/type-life-events/{id}",
+              "host": [
+                "{{base_url}}"
+              ],
               "path": [
                 "type-life-events",
                 "{id}"
@@ -335,6 +406,9 @@
             "header": [],
             "url": {
               "raw": "{{base_url}}/type-life-events",
+              "host": [
+                "{{base_url}}"
+              ],
               "path": [
                 "type-life-events"
               ]
@@ -349,6 +423,9 @@
             "header": [],
             "url": {
               "raw": "{{base_url}}/type-life-events/{id}/life-events",
+              "host": [
+                "{{base_url}}"
+              ],
               "path": [
                 "type-life-events",
                 "{id}",
@@ -365,6 +442,9 @@
             "header": [],
             "url": {
               "raw": "{{base_url}}/type-life-events/{id}/life-events/{id}",
+              "host": [
+                "{{base_url}}"
+              ],
               "path": [
                 "type-life-events",
                 "{id}",
@@ -382,6 +462,9 @@
             "header": [],
             "url": {
               "raw": "{{base_url}}/type-life-events",
+              "host": [
+                "{{base_url}}"
+              ],
               "path": [
                 "type-life-events"
               ]
@@ -396,6 +479,9 @@
             "header": [],
             "url": {
               "raw": "{{base_url}}/type-life-events/{id}",
+              "host": [
+                "{{base_url}}"
+              ],
               "path": [
                 "type-life-events",
                 "{id}"
@@ -411,6 +497,9 @@
             "header": [],
             "url": {
               "raw": "{{base_url}}/type-life-events/{id}",
+              "host": [
+                "{{base_url}}"
+              ],
               "path": [
                 "type-life-events",
                 "{id}"
