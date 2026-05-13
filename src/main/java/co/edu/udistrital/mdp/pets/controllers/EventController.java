@@ -19,7 +19,7 @@ import co.edu.udistrital.mdp.pets.exceptions.IllegalOperationException;
 import co.edu.udistrital.mdp.pets.services.EventService;
 
 @RestController
-@RequestMapping("/api/events")
+@RequestMapping("/events")
 public class EventController {
 
     @Autowired
