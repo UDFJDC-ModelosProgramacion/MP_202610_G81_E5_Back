@@ -15,4 +15,5 @@ public class PetDTO {
     private Boolean compOtherPets;
     private ShelterDTO shelter;
     private AdopterDTO adopter;
+    private Long shelterId;  
 }
