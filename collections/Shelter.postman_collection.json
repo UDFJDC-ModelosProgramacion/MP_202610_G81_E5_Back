@@ -30,7 +30,7 @@
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"shelterName\": \"Refugio Perritos Sanos\",\n  \"city\": \"Bogotá\",\n  \"location\": \"Calle 123 #45-67\"\n}",
+          "raw": "{\n  \"name\": \"Refugio Perritos Sanos\",\n  \"city\": \"Bogotá\",\n  \"location\": \"Calle 123 #45-67\"\n}",
           "options": { "raw": { "language": "json" } }
         },
         "url": {
@@ -46,7 +46,7 @@
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"shelterName\": \"Refugio Actualizado\",\n  \"city\": \"Medellín\",\n  \"location\": \"Avenida Uribe\"\n}",
+          "raw": "{\n  \"name\": \"Refugio Actualizado\",\n  \"city\": \"Medellín\",\n  \"location\": \"Avenida Uribe\"\n}",
           "options": { "raw": { "language": "json" } }
         },
         "url": {
