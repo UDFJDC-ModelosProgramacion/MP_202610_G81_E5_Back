@@ -1,5 +1,7 @@
 package co.edu.udistrital.mdp.pets.entities;
 
+import java.time.LocalDate;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -11,22 +13,24 @@ import uk.co.jemos.podam.common.PodamExclude;
 @Entity
 public class AdoptionRequestEntity extends BaseEntity {
 
+    private LocalDate requestDate;
+
     @PodamExclude
     @ManyToOne
-    @JoinColumn(name = "adopter_id")
+    @JoinColumn(name="adopter_id")
     private AdopterEntity adopter;
 
     @PodamExclude
-    @OneToOne(mappedBy = "request")
+    @OneToOne(mappedBy="request")
     private AdoptionProcessEntity adoptionProcess;
 
     @PodamExclude
     @ManyToOne
-    @JoinColumn(name = "pet_id")
+    @JoinColumn(name="pet_id")
     private PetEntity pet;
 
     private String purpose;
     private String papers;
-    private String status; // aprobado, cerrado
+    private String status;
 
 }
