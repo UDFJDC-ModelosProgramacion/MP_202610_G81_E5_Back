@@ -22,7 +22,7 @@ import co.edu.udistrital.mdp.pets.exceptions.IllegalOperationException;
 import co.edu.udistrital.mdp.pets.services.AdopterService;
 
 @RestController
-@RequestMapping("/api/adopters")
+@RequestMapping("/adopters")
 public class AdopterController {
 
     @Autowired

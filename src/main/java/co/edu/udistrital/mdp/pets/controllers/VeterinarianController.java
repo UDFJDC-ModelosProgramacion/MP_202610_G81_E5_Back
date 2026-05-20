@@ -22,7 +22,7 @@ import co.edu.udistrital.mdp.pets.exceptions.IllegalOperationException;
 import co.edu.udistrital.mdp.pets.services.VeterinarianService;
 
 @RestController
-@RequestMapping("/api/veterinarians")
+@RequestMapping("/veterinarians")
 public class VeterinarianController {
 
     @Autowired

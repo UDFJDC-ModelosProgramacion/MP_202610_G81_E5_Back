@@ -22,7 +22,7 @@ import co.edu.udistrital.mdp.pets.exceptions.IllegalOperationException;
 import co.edu.udistrital.mdp.pets.services.ShelterService;
 
 @RestController
-@RequestMapping("/api/shelters")
+@RequestMapping("/shelters")
 public class ShelterController {
 
     @Autowired

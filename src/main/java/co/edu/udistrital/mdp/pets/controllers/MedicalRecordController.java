@@ -24,7 +24,7 @@ import co.edu.udistrital.mdp.pets.exceptions.IllegalOperationException;
 import co.edu.udistrital.mdp.pets.services.MedicalRecordService;
 
 @RestController
-@RequestMapping("/api/medical-records")
+@RequestMapping("/medical-records")
 public class MedicalRecordController {
 
     @Autowired
