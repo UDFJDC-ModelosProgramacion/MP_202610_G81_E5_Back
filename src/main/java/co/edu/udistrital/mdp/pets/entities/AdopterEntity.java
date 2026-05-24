@@ -7,20 +7,21 @@ import java.util.List;
 
 @Data
 @Entity
-
 public class AdopterEntity extends BaseEntity {
     private String housingType;
     private Boolean hasOtherPets;
+    private String email;
+    private String password;
 
     @PodamExclude
     @OneToMany
-    private List<AdoptionProcessEntity> adoptionProcess=new ArrayList <>();
+    private List<AdoptionProcessEntity> adoptionProcess = new ArrayList<>();
 
     @PodamExclude
     @OneToMany
-    private List<AdoptionRequestEntity> adoptionRequest=new ArrayList <>();
-    
+    private List<AdoptionRequestEntity> adoptionRequest = new ArrayList<>();
+
     @PodamExclude
     @OneToMany
-    private List<PetEntity> pet= new ArrayList <>();
+    private List<PetEntity> pet = new ArrayList<>();
 }

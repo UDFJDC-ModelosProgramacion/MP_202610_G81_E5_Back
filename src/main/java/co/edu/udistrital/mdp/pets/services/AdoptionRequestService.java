@@ -35,47 +35,60 @@ public class AdoptionRequestService {
     private TrialCohabitationRepository trialCohabitationRepository;
 
     @Transactional
-    public AdoptionRequestEntity createAdoptionRequest(AdoptionRequestEntity adoptionRequestEntity)
-            throws EntityNotFoundException, IllegalOperationException {
+public AdoptionRequestEntity createAdoptionRequest(
+        AdoptionRequestEntity adoptionRequestEntity)
+        throws EntityNotFoundException, IllegalOperationException {
 
-        log.info("Inicia proceso de creación de solicitud de adopción");
+    log.info("Inicia proceso de creación de solicitud");
 
-        if (adoptionRequestEntity.getAdopter() == null)
-            throw new IllegalOperationException("La solicitud debe tener un adoptante");
+    if (adoptionRequestEntity.getAdopter() == null)
+        throw new IllegalOperationException("La solicitud debe tener un adoptante");
 
-        Long adopterId = adoptionRequestEntity.getAdopter().getId();
+    Long adopterId = adoptionRequestEntity.getAdopter().getId();
 
-        if (adopterId == null || !adopterRepository.existsById(adopterId))
-            throw new EntityNotFoundException("El adoptante no existe");
+    if (adopterId == null || !adopterRepository.existsById(adopterId))
+        throw new EntityNotFoundException("El adoptante no existe");
 
-        if (adoptionRequestEntity.getPet() == null || adoptionRequestEntity.getPet().getId() == null)
-            throw new IllegalOperationException("La solicitud debe incluir una mascota");
+    if (adoptionRequestEntity.getPet() == null ||
+        adoptionRequestEntity.getPet().getId() == null)
+        throw new IllegalOperationException("La solicitud debe incluir una mascota");
 
-        Long petId = adoptionRequestEntity.getPet().getId();
+    Long petId = adoptionRequestEntity.getPet().getId();
 
-        try {
-            petId = Long.parseLong(adoptionRequestEntity.getPet().getId().toString());
-        } catch (NumberFormatException e) {
-            throw new IllegalOperationException("El id de mascota debe ser numérico");
+    if (!petRepository.existsById(petId))
+        throw new EntityNotFoundException("La mascota no existe");
+
+    List<AdoptionRequestEntity> requests =
+            adoptionRequestRepository.findByAdopterId(adopterId);
+
+    for (AdoptionRequestEntity r : requests) {
+
+        String status = r.getStatus();
+
+        if (status != null &&
+            status.equalsIgnoreCase("pendiente")) {
+
+            throw new IllegalOperationException(
+                "El adoptante ya tiene una solicitud pendiente");
         }
+    }
 
-        if (!petRepository.existsById(petId))
-            throw new EntityNotFoundException("La mascota no existe");
+    adoptionRequestEntity.setStatus("pendiente");
 
-        // Validar que no tenga otra solicitud pendiente
-        List<AdoptionRequestEntity> requests = adoptionRequestRepository.findByAdopterId(adopterId);
+    // Logs para ver qué llega
+    log.info("Adopter ID: {}", adopterId);
+    log.info("Pet ID: {}", petId);
+    log.info("Purpose: {}", adoptionRequestEntity.getPurpose());
+    log.info("Papers: {}", adoptionRequestEntity.getPapers());
 
-        for (AdoptionRequestEntity r : requests) {
-            if ("pendiente".equalsIgnoreCase(r.getStatus()))
-                throw new IllegalOperationException("El adoptante ya tiene una solicitud pendiente");
-        }
-
-        adoptionRequestEntity.setStatus("pendiente");
-
-        log.info("Termina proceso de creación de solicitud de adopción");
-
+    try {
         return adoptionRequestRepository.save(adoptionRequestEntity);
     }
+    catch(Exception e){
+        e.printStackTrace();
+        throw e;
+    }
+}
 
     public AdoptionRequestEntity getAdoptionRequest(Long adoptionRequestId)
             throws EntityNotFoundException {
