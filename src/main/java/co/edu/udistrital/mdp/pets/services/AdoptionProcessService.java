@@ -65,12 +65,6 @@ public class AdoptionProcessService {
                 .findById(adoptionProcess.getRequest().getId())
                 .orElseThrow(() -> new IllegalOperationException("La solicitud de adopción no existe"));
 
-        // Validar que esté aprobada
-        if (request.getStatus() == null ||
-            !"aprobado".equalsIgnoreCase(request.getStatus().trim())) {
-            throw new IllegalOperationException(
-                    "La solicitud debe estar aprobada para iniciar el proceso de adopción");
-        }
 
         // Verificar que el veterinario no tenga otro proceso activo
         if (adoptionProcessRepository.existsByVeterinarian(adoptionProcess.getVeterinarian())) {
