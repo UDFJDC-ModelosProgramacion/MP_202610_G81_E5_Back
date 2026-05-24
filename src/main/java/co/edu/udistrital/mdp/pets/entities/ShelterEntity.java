@@ -15,6 +15,8 @@ public class ShelterEntity extends BaseEntity {
     private String name;
     private String city;
     private String location;
+    private String email;
+    private String password;
 
     @ElementCollection
     @OneToMany(mappedBy = "shelter", cascade = CascadeType.ALL, orphanRemoval = true) 

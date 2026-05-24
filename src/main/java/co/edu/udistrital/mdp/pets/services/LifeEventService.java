@@ -136,6 +136,12 @@ public class LifeEventService {
 
     }
 
+    @Transactional
+    public List<LifeEventEntity> getEventsByShelter(Long shelterId) {
+        log.info("Inicia proceso de consultar eventos de vida para el shelter con id = " + shelterId);
+        return lifeEventRepository.findByPetShelterId(shelterId);
+    }
+
     private void validateLifeEvent(String description, LocalDate date, PetEntity pet, TypeLEEntity type, VeterinarianEntity veterinarian) throws IllegalOperationException {    
 		
         if(description == null || description.isEmpty()) {
