@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import co.edu.udistrital.mdp.pets.dto.PetDTO;
+import co.edu.udistrital.mdp.pets.dto.ShelterDTO;
 import co.edu.udistrital.mdp.pets.entities.AdopterEntity;
 import co.edu.udistrital.mdp.pets.entities.PetEntity;
 import co.edu.udistrital.mdp.pets.entities.ShelterEntity;
@@ -75,6 +76,12 @@ public class PetController {
         dto.setTemperament(entity.getTemperament());
         dto.setCompKids(entity.getCompKids());
         dto.setCompOtherPets(entity.getCompOtherPets());
+        if (entity.getShelter() != null) {
+            ShelterDTO shelterDTO = new ShelterDTO();
+            shelterDTO.setId(entity.getShelter().getId());
+            shelterDTO.setName(entity.getShelter().getName());
+            dto.setShelter(shelterDTO);
+        }
         return dto;
     }
 

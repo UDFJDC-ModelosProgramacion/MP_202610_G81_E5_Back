@@ -12,7 +12,9 @@ public class VeterinarianEntity extends BaseEntity {
     private String licenseNumber;
     private String specialty;
     private String availability;
-
+    private String email;
+    private String password;
+    
     @ManyToOne
     @JoinColumn(name = "shelter_id")
     @PodamExclude
