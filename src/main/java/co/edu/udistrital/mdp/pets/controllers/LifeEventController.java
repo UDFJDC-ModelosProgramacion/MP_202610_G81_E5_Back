@@ -49,7 +49,18 @@ public class LifeEventController {
         return new ResponseEntity<>(convertToDTO(created), HttpStatus.CREATED);
     }
 
-    // --- ¡RESOLVEMOS TAMBIÉN EL 404 DE CONSULTAR EVENTOS AQUÍ! ---
+    @GetMapping("/shelter/{shelterId}")
+    public ResponseEntity<List<LifeEventDTO>> getEventsByShelter(@PathVariable Long shelterId) {
+        List<LifeEventEntity> entities = lifeEventService.getEventsByShelter(shelterId);
+        
+        // Convertir la lista de entidades a DTOs
+        List<LifeEventDTO> dtos = entities.stream()
+                                        .map(this::convertToDTO)
+                                        .collect(Collectors.toList());
+                                        
+        return new ResponseEntity<>(dtos, HttpStatus.OK);
+    }
+
     @GetMapping("/pet/{petId}")
     public ResponseEntity<List<LifeEventDTO>> getEventsByPet(@PathVariable Long petId) {
         List<LifeEventDTO> events = lifeEventService.getLifeEvents().stream()
@@ -66,10 +77,6 @@ public class LifeEventController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    // ==========================================
-    // MÉTODOS DE CONVERSIÓN MANUAL (Tu Patrón)
-    // ==========================================
-    
     private LifeEventDTO convertToDTO(LifeEventEntity entity) {
         LifeEventDTO dto = new LifeEventDTO();
         dto.setId(entity.getId());
