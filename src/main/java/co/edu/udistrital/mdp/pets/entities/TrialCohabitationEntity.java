@@ -2,6 +2,8 @@ package co.edu.udistrital.mdp.pets.entities;
 
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -20,6 +22,8 @@ public class TrialCohabitationEntity extends BaseEntity {
 
     @PodamExclude
     @OneToOne
+    @JoinColumn(name = "adoption_process_id")
+    @JsonBackReference("process-trial")
     private AdoptionProcessEntity adoptionProcess;
 
     private LocalDate startDate;

@@ -2,6 +2,9 @@ package co.edu.udistrital.mdp.pets.entities;
 
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -18,19 +21,21 @@ public class AdoptionRequestEntity extends BaseEntity {
     @PodamExclude
     @ManyToOne
     @JoinColumn(name="adopter_id")
+    @JsonBackReference("adopter-requests")
     private AdopterEntity adopter;
 
     @PodamExclude
     @OneToOne(mappedBy="request")
+    @JsonIgnore
     private AdoptionProcessEntity adoptionProcess;
 
     @PodamExclude
     @ManyToOne
     @JoinColumn(name="pet_id")
+    @JsonBackReference("pet-requests")
     private PetEntity pet;
 
     private String purpose;
     private String papers;
     private String status;
-
 }

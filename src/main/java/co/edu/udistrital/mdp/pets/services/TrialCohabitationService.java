@@ -11,6 +11,7 @@ import co.edu.udistrital.mdp.pets.entities.AdoptionProcessEntity;
 import co.edu.udistrital.mdp.pets.entities.TrialCohabitationEntity;
 import co.edu.udistrital.mdp.pets.exceptions.EntityNotFoundException;
 import co.edu.udistrital.mdp.pets.exceptions.IllegalOperationException;
+import co.edu.udistrital.mdp.pets.repositories.AdoptionProcessRepository;
 import co.edu.udistrital.mdp.pets.repositories.TrialCohabitationRepository;
 import lombok.extern.slf4j.Slf4j;
 
@@ -20,6 +21,8 @@ public class TrialCohabitationService {
 
     @Autowired
     TrialCohabitationRepository trialCohabitationRepository;
+    @Autowired
+    private AdoptionProcessRepository adoptionProcessRepository;
 
     /**
      * Crea una prueba de cohabitación validada.
@@ -28,38 +31,71 @@ public class TrialCohabitationService {
      * @return la prueba de cohabitación guardada en la base de datos
      * @throws IllegalOperationException si la entidad o sus datos no cumplen reglas de negocio
      */
-    public TrialCohabitationEntity createTrialCohabitation(TrialCohabitationEntity trialCohabitation) 
-            throws IllegalOperationException {
-        log.info("Creando prueba de cohabitación");
+    @Transactional
+    public TrialCohabitationEntity createTrialCohabitation(
+        TrialCohabitationEntity trialCohabitation)
+        throws IllegalOperationException, EntityNotFoundException {
 
-        if (trialCohabitation == null) {
-            throw new IllegalOperationException("La prueba de cohabitación no puede ser nula");
-        }
+    log.info("Creando prueba de cohabitación");
 
-        AdoptionProcessEntity adoptionProcess = trialCohabitation.getAdoptionProcess();
-        if (adoptionProcess == null) {
-            throw new IllegalOperationException("La prueba de cohabitación debe tener un proceso de adopción");
-        }
-
-        String status = adoptionProcess.getStatus();
-        if (status == null || !"aprobado".equalsIgnoreCase(status.trim())) {
-            throw new IllegalOperationException("El proceso de adopción debe estar aprobado para crear la prueba de cohabitación");
-        }
-
-        if (trialCohabitation.getStartDate() == null || trialCohabitation.getEndDate() == null) {
-            throw new IllegalOperationException("Las fechas de inicio y fin de la prueba de cohabitación no pueden ser nulas");
-        }
-
-        if (trialCohabitation.getStartDate().isAfter(trialCohabitation.getEndDate())) {
-            throw new IllegalOperationException("La fecha de inicio no puede ser posterior a la fecha de fin");
-        }
-
-        if (trialCohabitation.getStatus() == null || trialCohabitation.getStatus().trim().isEmpty()) {
-            throw new IllegalOperationException("El estado de la prueba de cohabitación es obligatorio");
-        }
-
-        return trialCohabitationRepository.save(trialCohabitation);
+    if (trialCohabitation == null) {
+        throw new IllegalOperationException(
+                "La prueba de cohabitación no puede ser nula");
     }
+
+    if (trialCohabitation.getAdoptionProcess() == null ||
+            trialCohabitation.getAdoptionProcess().getId() == null) {
+
+        throw new IllegalOperationException(
+                "La prueba de cohabitación debe tener un proceso de adopción");
+    }
+
+    // Buscar proceso REAL en BD
+    Long processId =
+            trialCohabitation.getAdoptionProcess().getId();
+
+    AdoptionProcessEntity adoptionProcess =
+            adoptionProcessRepository.findById(processId)
+                    .orElseThrow(() ->
+                            new EntityNotFoundException(
+                                    "El proceso de adopción no existe"));
+
+    // Validar status REAL
+    String status = adoptionProcess.getStatus();
+
+    if (status == null ||
+            !"aprobado".equalsIgnoreCase(status.trim())) {
+
+        throw new IllegalOperationException(
+                "El proceso de adopción debe estar aprobado para crear la prueba de cohabitación");
+    }
+
+    if (trialCohabitation.getStartDate() == null ||
+            trialCohabitation.getEndDate() == null) {
+
+        throw new IllegalOperationException(
+                "Las fechas de inicio y fin no pueden ser nulas");
+    }
+
+    if (trialCohabitation.getStartDate()
+            .isAfter(trialCohabitation.getEndDate())) {
+
+        throw new IllegalOperationException(
+                "La fecha de inicio no puede ser posterior a la fecha de fin");
+    }
+
+    if (trialCohabitation.getStatus() == null ||
+            trialCohabitation.getStatus().trim().isEmpty()) {
+
+        throw new IllegalOperationException(
+                "El estado de la prueba de cohabitación es obligatorio");
+    }
+
+    // usar el entity REAL de BD
+    trialCohabitation.setAdoptionProcess(adoptionProcess);
+
+    return trialCohabitationRepository.save(trialCohabitation);
+}
 
     /**
      * Obtiene una prueba de cohabitación por su id.

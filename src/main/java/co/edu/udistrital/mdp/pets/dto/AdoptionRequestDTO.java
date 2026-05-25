@@ -20,8 +20,6 @@ public class AdoptionRequestDTO {
 
     private AdopterDTO adopter;
 
-    private AdoptionProcessDTO adoptionProcess;
-
     private PetDTO pet;
 
 }

@@ -19,9 +19,11 @@ import co.edu.udistrital.mdp.pets.MainApplication;
 import co.edu.udistrital.mdp.pets.entities.AdopterEntity;
 import co.edu.udistrital.mdp.pets.entities.AdoptionProcessEntity;
 import co.edu.udistrital.mdp.pets.entities.PetEntity;
-import co.edu.udistrital.mdp.pets.entities.VeterinarianEntity;
 import co.edu.udistrital.mdp.pets.entities.TrialCohabitationEntity;
+import co.edu.udistrital.mdp.pets.entities.VeterinarianEntity;
+import co.edu.udistrital.mdp.pets.exceptions.EntityNotFoundException;
 import co.edu.udistrital.mdp.pets.exceptions.IllegalOperationException;
+import co.edu.udistrital.mdp.pets.repositories.AdoptionProcessRepository;
 import co.edu.udistrital.mdp.pets.services.TrialCohabitationService;
 import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
@@ -34,6 +36,9 @@ public class TrialCohabitationServiceTest {
 
     @Autowired
     private TrialCohabitationService trialCohabitationService;
+
+    @Autowired
+    private AdoptionProcessRepository adoptionProcessRepository;
 
     @Autowired
     private TestEntityManager entityManager;
@@ -117,19 +122,32 @@ public class TrialCohabitationServiceTest {
     }
 
     @Test
-    void testCreateTrialCohabitationSuccess() throws IllegalOperationException {
-        TrialCohabitationEntity trial = factory.manufacturePojo(TrialCohabitationEntity.class);
-        trial.setAdoptionProcess(approvedProcess);
-        trial.setVeterinarian(approvedProcess.getVeterinarian());
-        trial.setStartDate(LocalDate.now());
-        trial.setEndDate(LocalDate.now().plusDays(7));
-        trial.setStatus("abierta");
+void testCreateTrialCohabitationSuccess()
+        throws IllegalOperationException, EntityNotFoundException {
 
-        TrialCohabitationEntity result = trialCohabitationService.createTrialCohabitation(trial);
+    approvedProcess.setStatus("aprobado");
 
-        assertNotNull(result);
-        assertNotNull(result.getId());
-        assertEquals("abierta", result.getStatus().toLowerCase());
-    }
+    // Guardar el proceso en BD
+    approvedProcess =
+            adoptionProcessRepository.save(approvedProcess);
+
+    TrialCohabitationEntity trial =
+            factory.manufacturePojo(TrialCohabitationEntity.class);
+
+    trial.setAdoptionProcess(approvedProcess);
+    trial.setVeterinarian(approvedProcess.getVeterinarian());
+    trial.setStartDate(LocalDate.now());
+    trial.setEndDate(LocalDate.now().plusDays(7));
+    trial.setStatus("abierta");
+
+    TrialCohabitationEntity result =
+            trialCohabitationService.createTrialCohabitation(trial);
+
+    assertNotNull(result);
+    assertNotNull(result.getId());
+    assertEquals(
+            "abierta",
+            result.getStatus().toLowerCase());
+}
 }
 
